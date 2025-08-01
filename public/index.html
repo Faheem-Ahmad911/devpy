@@ -1868,47 +1868,26 @@
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
 
-            try {
-                // Make actual API call to submit form
-                const response = await fetch('/api/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formObject)
-                });
+                        try {
+            await db.collection("contacts").add(formObject);
 
-                const result = await response.json();
+            // Success state
+            submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+            submitButton.style.background = '#10b981';
 
-                if (response.ok && result.success) {
-                    // Success state
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitButton.style.background = '#10b981';
-                    
-                    // Show success message
-                    showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-                    
-                    // Reset form
-                    e.target.reset();
-                } else {
-                    // Error state
-                    submitButton.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
-                    submitButton.style.background = '#ef4444';
-                    
-                    // Show error message
-                    showNotification(result.error || 'Failed to send message. Please try again.', 'error');
-                }
-                
+            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+
+            e.target.reset();
+
             } catch (error) {
-                console.error('Form submission error:', error);
-                
-                // Error state
-                submitButton.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
-                submitButton.style.background = '#ef4444';
-                
-                // Show error message
-                showNotification('Network error. Please check your connection and try again.', 'error');
+            console.error('Firestore error:', error);
+
+            submitButton.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
+            submitButton.style.background = '#ef4444';
+
+            showNotification('Failed to send message. Try again.', 'error');
             }
+
 
             // Reset button after delay
             setTimeout(() => {
