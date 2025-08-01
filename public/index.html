@@ -338,12 +338,19 @@
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
             color: var(--text-primary);
-            font-size: var(--font-xl);
+            font-size: var(--font-xxl);
             cursor: pointer;
-            padding: var(--space-xs);
+            padding: var(--space-sm);
+            transition: all var(--transition-normal);
+        }
+        .mobile-menu-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: scale(1.1);
         }
 
         /* Hero Section */
@@ -907,8 +914,10 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--glass-bg);
+                /* Dark semi-transparent background for readability */
+                background: rgba(0, 0, 0, 0.85);
                 backdrop-filter: blur(20px);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
                 border-top: 1px solid var(--glass-border);
                 flex-direction: column;
                 padding: var(--space-md);
