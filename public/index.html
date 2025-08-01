@@ -2266,11 +2266,12 @@
     </script>
         <!-- Firebase SDKs -->
  <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<!-- Firebase CDN (modular v9.6.1) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
 <script>
-  // Your Firebase configuration
+  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyA4B-y7gsWIfdL5uW-gxaqsLyUKzmiM0Zk",
     authDomain: "devpy-contact.firebaseapp.com",
@@ -2281,43 +2282,43 @@
     measurementId: "G-JPE1T0CNGK"
   };
 
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase with compat version
+  firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  // Form submission handler
-  const contactForm = document.getElementById("contactForm");
+  // Wait for DOM before attaching listener
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactForm = document.getElementById("contactForm");
 
-  contactForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+    contactForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-    const name = contactForm.name.value;
-    const email = contactForm.email.value;
-    const company = contactForm.company.value;
-    const service = contactForm.service.value;
-    const budget = contactForm.budget.value;
-    const message = contactForm.message.value;
+      const name = contactForm.name.value;
+      const email = contactForm.email.value;
+      const company = contactForm.company.value;
+      const service = contactForm.service.value;
+      const budget = contactForm.budget.value;
+      const message = contactForm.message.value;
 
-    try {
-      await db.collection("contacts").add({
-        name,
-        email,
-        company,
-        service,
-        budget,
-        message,
-        createdAt: new Date()
-      });
+      try {
+        await db.collection("contacts").add({
+          name,
+          email,
+          company,
+          service,
+          budget,
+          message,
+          createdAt: new Date()
+        });
 
-      alert("Message sent successfully!");
-      contactForm.reset();
-    } catch (error) {
-      console.error("Error sending message:", error);
-      alert("Failed to send message. Try again.");
-    }
+        alert("✅ Message sent successfully!");
+        contactForm.reset();
+      } catch (error) {
+        console.error("❌ Firebase error:", error);
+        alert("❌ Failed to send. Check console or config.");
+      }
+    });
   });
 </script>
-
-
 </body>
 </html>
