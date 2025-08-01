@@ -100,6 +100,7 @@
             font-size: 16px;
         }
 
+
         body {
             font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
@@ -2263,5 +2264,60 @@
         console.log('🎨 Designed for optimal user experience');
         console.log('⚡ Optimized for performance and accessibility');
     </script>
+        <!-- Firebase SDKs -->
+ <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+<script>
+  // Your Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA4B-y7gsWIfdL5uW-gxaqsLyUKzmiM0Zk",
+    authDomain: "devpy-contact.firebaseapp.com",
+    projectId: "devpy-contact",
+    storageBucket: "devpy-contact.firebasestorage.app",
+    messagingSenderId: "181904310058",
+    appId: "1:181904310058:web:4a2910e7f10c2ff4ea2853",
+    measurementId: "G-JPE1T0CNGK"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // Form submission handler
+  const contactForm = document.getElementById("contactForm");
+
+  contactForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = contactForm.name.value;
+    const email = contactForm.email.value;
+    const company = contactForm.company.value;
+    const service = contactForm.service.value;
+    const budget = contactForm.budget.value;
+    const message = contactForm.message.value;
+
+    try {
+      await db.collection("contacts").add({
+        name,
+        email,
+        company,
+        service,
+        budget,
+        message,
+        createdAt: new Date()
+      });
+
+      alert("Message sent successfully!");
+      contactForm.reset();
+    } catch (error) {
+      console.error("Error sending message:", error);
+      alert("Failed to send message. Try again.");
+    }
+  });
+</script>
+
+
 </body>
 </html>
