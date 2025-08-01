@@ -12,10 +12,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Only POST requests allowed' });
   }
 
-  const { name, email, company, service, message } = req.body;
+  const { name, email, company, service, budget, message } = req.body;
+
+  // Validate required fields
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Name, email, and message are required' });
+  }
 
   const { error } = await supabase.from('messages').insert([
-    { name, email, company, service, message }
+    { name, email, company, service, budget, message }
   ]);
 
   if (error) {

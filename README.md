@@ -10,14 +10,93 @@ A modern, responsive website for DevPy showcasing premium technology solutions a
 - **Performance**: Optimized loading, lazy loading, and efficient animations
 - **Accessibility**: Keyboard navigation support and proper ARIA labels
 - **SEO Optimized**: Meta tags, structured data, and semantic HTML
+- **Contact Form**: Integrated with Supabase for message submission
 
 ## 🚀 Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Backend**: Next.js API routes
+- **Database**: Supabase (PostgreSQL)
 - **Animations**: AOS (Animate On Scroll) library
 - **Icons**: Font Awesome 6
 - **Fonts**: Google Fonts (Outfit)
 - **Deployment**: Vercel
+
+## 📝 Setup Instructions
+
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Configure Supabase
+1. Create a new project in [Supabase](https://supabase.com)
+2. Copy your project URL and anon key from the Supabase dashboard
+3. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+4. Update `.env` with your Supabase credentials:
+   ```
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_ANON_KEY=your-anon-key-here
+   ```
+
+### 3. Set Up Database Table
+1. Go to your Supabase project dashboard
+2. Navigate to the SQL Editor
+3. Run the SQL script from `supabase-setup.sql` to create the messages table
+
+### 4. Run the Application
+```bash
+# Development
+npm run dev
+
+# Production build
+npm run build
+npm start
+```
+
+## 📋 Contact Form
+
+The contact form captures:
+- **Name** (required)
+- **Email** (required)
+- **Company** (optional)
+- **Service** (optional)
+- **Budget** (optional)
+- **Message** (required)
+
+## 🔗 API Endpoints
+
+### POST /api/submit
+Submits a new message to the database.
+
+**Request Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "company": "Example Corp",
+  "service": "Web Development",
+  "budget": "$10k-$25k",
+  "message": "Project description..."
+}
+```
+
+**Response:**
+```json
+{
+  "success": true
+}
+```
+
+## 🛠️ Troubleshooting
+
+1. **Messages not submitting**: Check that your Supabase credentials are correct in `.env`
+2. **Form validation errors**: Ensure name, email, and message fields are filled
+3. **Database errors**: Verify the messages table exists and has the correct structure
+4. **Permission errors**: Check that Row Level Security policies allow INSERT operations
 
 ## 📁 Project Structure
 

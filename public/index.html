@@ -1850,7 +1850,7 @@
         }
 
         // Handle contact form submission
-        function handleFormSubmission(e) {
+        async function handleFormSubmission(e) {
             e.preventDefault();
             
             // Get form data
@@ -1867,26 +1867,54 @@
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
 
-            // Simulate form submission (replace with actual API call)
+            try {
+                // Make actual API call to submit form
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Success state
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    submitButton.style.background = '#10b981';
+                    
+                    // Show success message
+                    showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+                    
+                    // Reset form
+                    e.target.reset();
+                } else {
+                    // Error state
+                    submitButton.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
+                    submitButton.style.background = '#ef4444';
+                    
+                    // Show error message
+                    showNotification(result.error || 'Failed to send message. Please try again.', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                
+                // Error state
+                submitButton.innerHTML = '<i class="fas fa-times"></i> Failed to Send';
+                submitButton.style.background = '#ef4444';
+                
+                // Show error message
+                showNotification('Network error. Please check your connection and try again.', 'error');
+            }
+
+            // Reset button after delay
             setTimeout(() => {
-                // Reset button
-                submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                submitButton.style.background = '#10b981';
-                
-                // Show success message
-                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
-                
-                // Reset form
-                e.target.reset();
-                
-                // Reset button after delay
-                setTimeout(() => {
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                    submitButton.style.background = '';
-                }, 3000);
-                
-            }, 2000); // Simulate 2 second API call
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                submitButton.style.background = '';
+            }, 3000);
         }
 
         /**
