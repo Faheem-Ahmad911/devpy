@@ -1,0 +1,22 @@
+{
+  "name": "devpy-website",
+  "version": "1.0.0",
+  "description": "DevPy - Premium Tech Solutions Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "start": "vercel dev"
+  },
+  "keywords": [
+    "devpy",
+    "web-development",
+    "tech-solutions",
+    "portfolio"
+  ],
+  "author": "DevPy Team",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^28.4.12"
+  }
+}
