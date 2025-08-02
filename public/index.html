@@ -324,15 +324,21 @@
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-sm);
             padding: var(--space-xs);
-            color: var(--text-primary);
             cursor: pointer;
-            transition: all var(--transition-normal);
+            transition: background var(--transition-normal), transform var(--transition-normal);
             backdrop-filter: blur(10px);
+            /* Color will be set by JavaScript for better visibility */
         }
 
         .theme-toggle:hover {
             background: var(--primary);
+            color: #ffffff !important;
             transform: scale(1.1);
+        }
+
+        /* Ensure theme toggle icon is always visible */
+        .theme-toggle i {
+            transition: color var(--transition-normal);
         }
 
         /* Mobile Menu Button */
@@ -1572,8 +1578,8 @@
                 <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://github.com/DevPy1999/Company-Website.git" class="social-link" title="GitHub" target="_blank">
-                    <i class="fab fa-github"></i>
+                <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank">
+                    <i class="fab fa-facebook"></i>
                 </a>
                 <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank">
                     <i class="fab fa-instagram"></i>
@@ -1607,8 +1613,8 @@
         <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank" rel="noopener">
             <i class="fab fa-twitter"></i>
         </a>
-        <a href="https://github.com/DevPy1999/Company-Website.git" class="social-link" title="GitHub" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i>
+        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank" rel="noopener">
+            <i class="fab fa-facebook"></i>
         </a>
         <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank" rel="noopener">
             <i class="fab fa-instagram"></i>
@@ -1619,7 +1625,7 @@
                 <!-- Quick Links -->
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <div class="footer-links" style="text-align: left; margin-top: 1rem;">
+                    <div class="footer-links" style="margin-top: 1rem;">
                     <a href="#" onclick="showPage('home')">Home</a>
                     <a href="#" onclick="showPage('about')">About Us</a>
                     <a href="#" onclick="showPage('services')">Services</a>
@@ -1629,6 +1635,7 @@
                 </div>
                 
                 <!-- Services -->
+
                 <div class="footer-section">
                     <h3>Services</h3>
                     <div class="footer-links">
@@ -1806,10 +1813,16 @@
         // Update theme toggle icon
         function updateThemeIcon() {
             const themeIcon = document.getElementById('themeIcon');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
             if (isDarkMode) {
                 themeIcon.className = 'fas fa-sun';
+                // In dark mode, use light color for the icon
+                themeToggle.style.color = '#ffffff';
             } else {
                 themeIcon.className = 'fas fa-moon';
+                // In light mode, use dark color for better contrast against light background
+                themeToggle.style.color = '#ffffff';
             }
         }
 
@@ -2272,6 +2285,9 @@
             } catch (e) {
                 // localStorage not available, use default
             }
+            
+            // Ensure theme icon colors are set correctly after initialization
+            updateThemeIcon();
         }
 
         // Run initialization
