@@ -325,15 +325,21 @@
             border-radius: var(--radius-sm);
             padding: var(--space-xs);
             cursor: pointer;
-            transition: background var(--transition-normal), transform var(--transition-normal);
+            transition: all var(--transition-normal);
             backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
             /* Color will be set by JavaScript for better visibility */
         }
 
         .theme-toggle:hover {
             background: var(--primary);
             color: #ffffff !important;
-            transform: scale(1.1);
+            transform: scale(1.05);
+            border-color: var(--primary) !important;
         }
 
         /* Ensure theme toggle icon is always visible */
@@ -1817,12 +1823,14 @@
             
             if (isDarkMode) {
                 themeIcon.className = 'fas fa-sun';
-                // In dark mode, use light color for the icon
+                // In dark mode, use light color for the icon and add blue border
                 themeToggle.style.color = '#ffffff';
+                themeToggle.style.border = '2px solid #2196F3';
             } else {
                 themeIcon.className = 'fas fa-moon';
-                // In light mode, use dark color for better contrast against light background
-                themeToggle.style.color = '#ffffff';
+                // In light mode, use the primary color (blue) for better visibility
+                themeToggle.style.color = '#2196F3';
+                themeToggle.style.border = '1px solid var(--glass-border)';
             }
         }
 
