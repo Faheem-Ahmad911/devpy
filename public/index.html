@@ -296,26 +296,28 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        .nav-link::before {
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: -2px;
+            left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
-            transition: all var(--transition-normal);
-            transform: translateX(-50%);
+            background: #2196F3;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
             color: var(--text-primary);
-            background: var(--glass-bg);
         }
 
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            width: 80%;
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: #2196F3;
+            font-weight: 600;
         }
 
         /* Theme Toggle Button */
@@ -333,6 +335,12 @@
             width: 36px;
             height: 36px;
             /* Color will be set by JavaScript for better visibility */
+        }
+        
+        /* Style for the theme toggle button container in desktop view */
+        .nav-menu li:last-child {
+            display: flex;
+            align-items: center;
         }
 
         .theme-toggle:hover {
@@ -933,14 +941,39 @@
                 border-top: 1px solid var(--glass-border);
                 flex-direction: column;
                 padding: var(--space-md);
-                gap: var(--space-sm);
+                gap: 0; /* Remove the gap between menu items */
+                text-align: center;
+                z-index: 1000;
             }
 
             .nav-menu.active {
                 display: flex;
             }
-
-            .hero {
+            
+            /* Fix the spacing in mobile navigation links */
+            .nav-menu li {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+                .nav-menu .nav-link {
+                    display: block;
+                    padding: 12px 0;
+                    margin: 0;
+                    font-size: 16px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    width: 100%;
+                    text-align: center;
+                }
+                
+                /* Center the theme toggle button in mobile view */
+                .nav-menu .theme-toggle {
+                    margin: 15px auto;
+                    width: 45px;
+                    height: 45px;
+                    font-size: 18px;
+                }            .hero {
                 padding: var(--space-xxl) var(--space-md);
             }
 
@@ -1714,6 +1747,9 @@
             
             // Set initial theme
             updateThemeIcon();
+            
+            // Initialize mobile touch events
+            initMobileEvents();
         });
 
         /**
@@ -1775,6 +1811,20 @@
                 mobileMenuIcon.className = 'fas fa-bars';
             }
         }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            // Only check when the mobile menu is open
+            if (!mobileMenuOpen) return;
+            
+            const navMenu = document.getElementById('navMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            // Check if the click is outside both the navigation menu and the menu button
+            if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                toggleMobileMenu();
+            }
+        });
 
         /**
          * Theme Toggle Functions
@@ -2257,6 +2307,87 @@
                 will-change: transform;
             }
 
+            /* Enhanced Mobile Menu Styles */
+            @media (max-width: 768px) {
+                .nav-menu {
+                    transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                    width: 100%; /* Ensure full width */
+                }
+                
+                /* Ensure list items are properly aligned */
+                .nav-menu li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
+                
+                .nav-menu.active {
+                    animation: slideInMenu 0.3s forwards;
+                }
+                
+                @keyframes slideInMenu {
+                    from {
+                        transform: translateY(-20px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+                
+                .mobile-menu-overlay {
+                    backdrop-filter: blur(3px);
+                }
+                
+                .nav-link {
+                    position: relative;
+                    overflow: hidden;
+                    transition: all 0.2s ease;
+                    padding: 15px 0;
+                    margin: 0;
+                    font-weight: 500;
+                    text-align: center;
+                }
+                
+                .nav-link:active {
+                    background-color: rgba(33, 150, 243, 0.1);
+                }
+                
+                .nav-link.active {
+                    color: #2196F3;
+                    font-weight: 600;
+                    background-color: rgba(33, 150, 243, 0.05);
+                }
+                
+                .nav-link.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 40px;
+                    height: 3px;
+                    background: #2196F3;
+                    border-radius: 2px;
+                }
+                
+                .nav-menu li:last-child .nav-link {
+                    border-bottom: none;
+                }
+                
+                /* Style for the theme toggle container in mobile view */
+                .nav-menu li:last-child {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 15px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    padding-top: 15px;
+                }
+            }
+
             /* Print styles */
             @media print {
                 .navbar, .scroll-top, .theme-toggle {
@@ -2296,6 +2427,95 @@
             
             // Ensure theme icon colors are set correctly after initialization
             updateThemeIcon();
+        }
+
+        /**
+         * Mobile-specific Event Handlers
+         */
+        
+        // Initialize mobile-specific events
+        function initMobileEvents() {
+            // Add swipe functionality for mobile navigation
+            const body = document.querySelector('body');
+            
+            // Variables to track touch events
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+            
+            // Track touch start position
+            body.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+                touchStartY = event.changedTouches[0].screenY;
+            }, false);
+            
+            // Track touch end position and handle swipe
+            body.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                touchEndY = event.changedTouches[0].screenY;
+                handleSwipe();
+            }, false);
+            
+            // Process swipe gesture
+            function handleSwipe() {
+                // Calculate horizontal and vertical distance
+                const horizontalDist = touchEndX - touchStartX;
+                const verticalDist = Math.abs(touchEndY - touchStartY);
+                
+                // Only detect horizontal swipes when vertical movement is minimal
+                if (Math.abs(horizontalDist) > 100 && verticalDist < 50) {
+                    // Right swipe (open menu)
+                    if (horizontalDist > 0 && !mobileMenuOpen) {
+                        toggleMobileMenu();
+                    }
+                    // Left swipe (close menu)
+                    else if (horizontalDist < 0 && mobileMenuOpen) {
+                        toggleMobileMenu();
+                    }
+                }
+            }
+            
+            // Add a semi-transparent overlay behind the mobile menu when it's open
+            const navbar = document.getElementById('navbar');
+            const menuOverlay = document.createElement('div');
+            menuOverlay.className = 'mobile-menu-overlay';
+            menuOverlay.style.display = 'none';
+            menuOverlay.style.position = 'fixed';
+            menuOverlay.style.top = '0';
+            menuOverlay.style.left = '0';
+            menuOverlay.style.right = '0';
+            menuOverlay.style.bottom = '0';
+            menuOverlay.style.background = 'rgba(0, 0, 0, 0.5)';
+            menuOverlay.style.zIndex = '9';
+            menuOverlay.style.opacity = '0';
+            menuOverlay.style.transition = 'opacity 0.3s ease';
+            document.body.insertBefore(menuOverlay, navbar);
+            
+            // Show/hide overlay when mobile menu toggles
+            const originalToggleMenu = toggleMobileMenu;
+            toggleMobileMenu = function() {
+                originalToggleMenu();
+                
+                if (mobileMenuOpen) {
+                    menuOverlay.style.display = 'block';
+                    setTimeout(() => {
+                        menuOverlay.style.opacity = '1';
+                    }, 10);
+                } else {
+                    menuOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        menuOverlay.style.display = 'none';
+                    }, 300);
+                }
+            };
+            
+            // Close menu when overlay is clicked
+            menuOverlay.addEventListener('click', function() {
+                if (mobileMenuOpen) {
+                    toggleMobileMenu();
+                }
+            });
         }
 
         // Run initialization
