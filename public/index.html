@@ -1175,11 +1175,11 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                        <span class="stat-number" data-count="150">0</span>
+                        <span class="stat-number" data-count="20">0</span>
                         <span class="stat-label">Projects Completed</span>
                     </div>
                     <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                        <span class="stat-number" data-count="98">0</span>
+                        <span class="stat-number" data-count="97">0</span>
                         <span class="stat-label">Client Satisfaction %</span>
                     </div>
                     <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
@@ -1187,7 +1187,7 @@
                         <span class="stat-label">7 Support</span>
                     </div>
                     <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-number" data-count="2">0</span>
                         <span class="stat-label">Years Experience</span>
                     </div>
                 </div>
@@ -1468,10 +1468,12 @@
                                     <option value="database-solutions">Database Solutions</option>
                                     <option value="devops">DevOps & Automation</option>
                                     <option value="consultation">General Consultation</option>
+                                    <option value="other">Other</option>
+
                                 </select>
                             </div>
                             
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="budget">Project Budget</label>
                                 <select class="form-control" id="budget" name="budget">
                                     <option value="">Select budget range</option>
@@ -1481,7 +1483,7 @@
                                     <option value="50k-100k">$50,000 - $100,000</option>
                                     <option value="over-100k">Over $100,000</option>
                                 </select>
-                            </div>
+                            </div> -->
                             
                             <div class="form-group">
                                 <label for="message">Project Details *</label>
@@ -1503,8 +1505,11 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Email Us</h4>
-                                <p>devpy1999@gmail.com</p>
-                                
+                                <p>
+                                    <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                                        devpy1999@gmail.com
+                                    </a>
+                                </p>
                             </div>
                         </div>
                         
@@ -1598,7 +1603,7 @@
                 <!-- Quick Links -->
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <div class="footer-links" style="text-align: center; margin-top: 1rem;">
+                    <div class="footer-links" style="text-align: left; margin-top: 1rem;">
                     <a href="#" onclick="showPage('home')">Home</a>
                     <a href="#" onclick="showPage('about')">About Us</a>
                     <a href="#" onclick="showPage('services')">Services</a>
@@ -1749,6 +1754,8 @@
                 document.documentElement.style.setProperty('--text-primary', '#ffffff');
                 document.documentElement.style.setProperty('--text-secondary', '#9ca3af');
                 document.documentElement.style.setProperty('--text-muted', '#6b7280');
+                document.documentElement.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.08)');
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.04)');
             } else {
                 // Light theme colors
                 document.documentElement.style.setProperty('--bg-primary', '#ffffff');
@@ -1757,6 +1764,8 @@
                 document.documentElement.style.setProperty('--text-primary', '#1a202c');
                 document.documentElement.style.setProperty('--text-secondary', '#4a5568');
                 document.documentElement.style.setProperty('--text-muted', '#718096');
+                document.documentElement.style.setProperty('--glass-border', '#2196F3');
+                document.documentElement.style.setProperty('--glass-bg', 'rgba(33, 150, 243, 0.05)');
             }
             
             updateThemeIcon();
@@ -2294,7 +2303,7 @@
       const email = contactForm.email.value;
       const company = contactForm.company.value;
       const service = contactForm.service.value;
-      const budget = contactForm.budget.value;
+    //   const budget = contactForm.budget.value;
       const message = contactForm.message.value;
 
       try {
@@ -2303,7 +2312,7 @@
           email,
           company,
           service,
-          budget,
+        //   budget,
           message,
           createdAt: new Date()
         });
