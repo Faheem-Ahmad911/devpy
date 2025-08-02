@@ -967,6 +967,12 @@
                     text-align: center;
                 }
                 
+                /* Remove border from Contact navigation link and the last item */
+                .nav-menu li:nth-last-child(2) .nav-link,
+                .nav-menu li:last-child .nav-link {
+                    border-bottom: none;
+                }
+                
                 /* Center the theme toggle button in mobile view */
                 .nav-menu .theme-toggle {
                     margin: 15px auto;
