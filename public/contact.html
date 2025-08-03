@@ -11,7 +11,7 @@
     <title>Contact DevPy - Get In Touch for Your Next Project</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="icon" type="image/png" href="logo.png">
     
     <!-- Google Fonts - Outfit for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +70,7 @@
     </nav>
 
     <!-- Contact Section -->
-    <section class="section" style="padding-top: 50px;">
+    <section class="section contact-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Get In Touch</h2>
@@ -80,16 +80,18 @@
             <div class="contact-content">
                 <!-- Contact Form -->
                 <div class="contact-form" data-aos="fade-right">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Send Us a Message</h3>
-                    <form id="contactForm">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="name">Full Name *</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required aria-describedby="nameError">
+                            <div class="error-message" id="nameError"></div>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="your.email@example.com" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="your.email@example.com" required aria-describedby="emailError">
+                            <div class="error-message" id="emailError"></div>
                         </div>
                         
                         <div class="form-group">
@@ -114,13 +116,20 @@
                         
                         <div class="form-group">
                             <label for="message">Project Details *</label>
-                            <textarea class="form-control" id="message" name="message" placeholder="Tell us about your project requirements, timeline, and any specific needs..." required></textarea>
+                            <textarea class="form-control" id="message" name="message" placeholder="Tell us about your project requirements, timeline, and any specific needs..." required aria-describedby="messageError"></textarea>
+                            <div class="error-message" id="messageError"></div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
                             <i class="fas fa-paper-plane"></i>
-                            Send Message
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Sending...
+                            </span>
                         </button>
+                        
+                        <div class="form-status" id="formStatus"></div>
                     </form>
                 </div>
                 
@@ -133,7 +142,7 @@
                         <div class="contact-details">
                             <h4>Email Us</h4>
                             <p>
-                                <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                                <a href="mailto:devpy1999@gmail.com">
                                     devpy1999@gmail.com
                                 </a>
                             </p>
@@ -146,7 +155,9 @@
                         </div>
                         <div class="contact-details">
                             <h4>Call Us</h4>
-                            <p><a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">+92 309 7609121</a></p>
+                            <p>
+                                <a href="tel:+923097609121">+92 309 7609121</a>
+                            </p>
                             <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
                         </div>
                     </div>
@@ -163,23 +174,7 @@
                     </div>
                     
                     <!-- Social Links -->
-                    <div style="margin-top: 2rem;">
-                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Follow Us</h4>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -191,14 +186,14 @@
             <div class="footer-content">
                 <!-- Company Info -->
                 <div class="footer-section">
-                    <div class="logo" style="margin-bottom: 1rem;">
+                    <div class="logo">
                         <div class="logo-icon">
                             <img src="logo.png" alt="DevPy Logo">
                         </div>
                         <span class="logo-text">DevPy</span>
                     </div>
                     <p>Transforming ideas into powerful digital experiences with cutting-edge development and innovative solutions.</p>
-                    <div class="social-links" style="text-align: center; margin-top: 1rem;">
+                    <div class="social-links">
                         <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
@@ -240,14 +235,14 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <div class="footer-links">
-                        <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                        <a href="mailto:devpy1999@gmail.com">
                             <i class="fas fa-envelope"></i> devpy1999@gmail.com
                         </a>
-                        <a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">
+                        <a href="tel:+923097609121">
                             <i class="fas fa-phone"></i> +92 309 7609121
                         </a>
                     </div>
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: var(--font-sm);">
+                    <p class="footer-hours">
                         Mon - Sat: 9:00 AM - 8:00 PM
                     </p>
                 </div>
