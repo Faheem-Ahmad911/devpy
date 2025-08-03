@@ -5,25 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DevPy - Premium technology solutions and development services for modern businesses">
-    <meta name="keywords" content="web development, mobile apps, tech solutions, DevPy">
+    <meta name="keywords" content="web development, mobile apps, tech solutions, DevPy, Python projects, AI, cloud solutions">
     <meta name="author" content="DevPy">
-    
+    <meta name="robots" content="index, follow">
+
+    <!-- Title -->
     <title>DevPy - Premium Tech Solutions & Development Services</title>
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%232196F3' d='M20 30h60l-10 40H30z'/%3E%3C/svg%3E">
-    
+    <link rel="icon" type="image/png" href="logo.png" />
+
+    <!-- Structured Data for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DevPy",
+      "url": "https://devpy.vercel.app",
+      "logo": "https://devpy.vercel.app/logo.png",
+      "description": "DevPy offers Python-based solutions, AI projects, web development, and cloud services for modern businesses.",
+      "sameAs": [
+        "https://www.linkedin.com/company/devpy-technologies",
+        "https://twitter.com/DevPyTech",
+        "https://www.facebook.com/profile.php?id=61559389452756",
+        "https://www.instagram.com/devpy_developers"
+      ]
+    }
+    </script>
+
     <!-- Google Fonts - Outfit for modern typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    
+
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -40,7 +60,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <!-- Logo with DevPy branding -->
+            <!-- Logo -->
             <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <img src="logo.png" alt="DevPy Logo">
@@ -50,12 +70,12 @@
 
             <!-- Navigation Menu -->
             <ul class="nav-menu" id="navMenu">
-                <li><a href="home.html" class="nav-link active" data-page="home">Home</a></li>
-                <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
-                <li><a href="services.html" class="nav-link" data-page="services">Services</a></li>
-                <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+                <li><a href="home.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
                 <li>
-                    <!-- Theme Toggle Button -->
+                    <!-- Theme Toggle -->
                     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
                         <i class="fas fa-moon" id="themeIcon"></i>
                     </button>
@@ -71,68 +91,49 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-            <!-- Animated DevPy Logo -->
+        <div class="hero-content" data-aos="fade-up">
             <div class="hero-logo">
                 <img src="logo.png" alt="DevPy Logo">
             </div>
-            
-            <h1 data-aos="fade-up" data-aos-delay="200">
-                Premium Tech Solutions
-            </h1>
-            
-            <p data-aos="fade-up" data-aos-delay="400">
-                Transforming ideas into powerful digital experiences with cutting-edge development, 
+            <h1>Premium Tech Solutions</h1>
+            <p>
+                Transforming ideas into powerful digital experiences with cutting-edge development,
                 innovative design, and scalable cloud solutions.
             </p>
-            
-            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="600">
+            <div class="cta-buttons">
                 <a href="services.html" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    Explore Services
+                    <i class="fas fa-rocket"></i> Explore Services
                 </a>
                 <a href="contact.html" class="btn btn-secondary">
-                    <i class="fas fa-message"></i>
-                    Get In Touch
+                    <i class="fas fa-message"></i> Get In Touch
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Preview Section -->
+    <!-- Services Section -->
     <section class="section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our Flagship Services</h2>
                 <p>Comprehensive technology solutions designed to accelerate your business growth</p>
             </div>
-            
+
             <div class="services-grid">
-                <!-- Web Development Service -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
                     <h3>Web Development</h3>
-                    <p>Modern, responsive websites and web applications built with the latest technologies and best practices for optimal performance.</p>
+                    <p>Modern, responsive websites and web apps with latest tech and performance practices.</p>
                 </div>
-                
-                <!-- Mobile Development Service -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-brain"></i></div>
                     <h3>AI Based Projects</h3>
-                    <p>AI based Projects leads to the effective way to success in Business.</p>
+                    <p>Innovative AI-based solutions to automate and enhance business processes.</p>
                 </div>
-                
-                <!-- Cloud Solutions Service -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
                     <h3>Cloud Solutions</h3>
-                    <p>Scalable cloud infrastructure and deployment solutions using AWS, Azure, and Google Cloud for maximum reliability.</p>
+                    <p>Scalable cloud infrastructure and deployments with AWS, Azure, and GCP.</p>
                 </div>
             </div>
         </div>
@@ -142,22 +143,10 @@
     <section class="section">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                    <span class="stat-number" data-count="20">0</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="stat-number" data-count="97">0</span>
-                    <span class="stat-label">Client Satisfaction %</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <span class="stat-number" data-count="24">0</span>
-                    <span class="stat-label">7 Support</span>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                    <span class="stat-number" data-count="2">0</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
+                <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="20">0</span><span class="stat-label">Projects Completed</span></div>
+                <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="97">0</span><span class="stat-label">Client Satisfaction %</span></div>
+                <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="24">0</span><span class="stat-label">7 Support</span></div>
+                <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="2">0</span><span class="stat-label">Years Experience</span></div>
             </div>
         </div>
     </section>
@@ -166,32 +155,19 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <!-- Company Info -->
                 <div class="footer-section">
                     <div class="logo" style="margin-bottom: 1rem;">
-                        <div class="logo-icon">
-                            <img src="logo.png" alt="DevPy Logo">
-                        </div>
+                        <div class="logo-icon"><img src="logo.png" alt="DevPy Logo"></div>
                         <span class="logo-text">DevPy</span>
                     </div>
-                    <p>Transforming ideas into powerful digital experiences with cutting-edge development and innovative solutions.</p>
-                    <div class="social-links" style="text-align: center; margin-top: 1rem;">
-                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank" rel="noopener">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank" rel="noopener">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank" rel="noopener">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                    <p>Transforming ideas into powerful digital experiences with innovative development.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/devpy_developers" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <div class="footer-links">
@@ -201,8 +177,6 @@
                         <a href="contact.html">Contact</a>
                     </div>
                 </div>
-                
-                <!-- Services -->
                 <div class="footer-section">
                     <h3>Services</h3>
                     <div class="footer-links">
@@ -212,38 +186,29 @@
                         <a href="services.html">DevOps</a>
                     </div>
                 </div>
-                
-                <!-- Contact Info -->
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <div class="footer-links">
-                        <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
-                            <i class="fas fa-envelope"></i> devpy1999@gmail.com
-                        </a>
-                        <a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">
-                            <i class="fas fa-phone"></i> +92 309 7609121
-                        </a>
+                        <a href="mailto:devpy1999@gmail.com"><i class="fas fa-envelope"></i> devpy1999@gmail.com</a>
+                        <a href="tel:+923097609121"><i class="fas fa-phone"></i> +92 309 7609121</a>
                     </div>
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: var(--font-sm);">
-                        Mon - Sat: 9:00 AM - 8:00 PM
-                    </p>
+                    <p style="margin-top: 1rem;">Mon - Sat: 9:00 AM - 8:00 PM</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 DevPy. All rights reserved. | DevPy Technologies</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
+    <!-- Scroll to Top -->
     <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>
