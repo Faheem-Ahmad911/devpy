@@ -68,6 +68,18 @@
     box-sizing: border-box;
 }
 
+/* Logo Visibility Fixes */
+.logo,
+.logo-icon,
+.logo-icon img,
+.logo-text,
+.hero-logo,
+.hero-logo img {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -194,12 +206,14 @@ body {
 
 /* Logo Styles with Animation */
 .logo {
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: var(--space-sm);
     text-decoration: none;
     transition: all var(--transition-normal);
     animation: logoFadeIn 1s ease-out;
+    z-index: 10000;
+    position: relative;
 }
 
 @keyframes logoFadeIn {
@@ -218,24 +232,29 @@ body {
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border-radius: 4px;
-    display: flex;
+    width: 48px;
+    height: 48px;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 8px;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
     transition: all var(--transition-normal);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
 }
 
 .logo-icon img {
-    width: 32px;
-    height: 32px;
+    width: 36px !important;
+    height: 36px !important;
     object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(33, 150, 243, 0.3));
+    filter: drop-shadow(0 2px 8px rgba(33, 150, 243, 0.5)) brightness(1.1);
     aspect-ratio: 1/1;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .logo-icon::before {
@@ -256,9 +275,13 @@ body {
 .logo-text {
     font-size: var(--font-2xl);
     font-weight: 800;
-    color: var(--text-primary);
-    text-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
+    color: var(--text-primary) !important;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
     font-family: 'Outfit', sans-serif;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10001;
 }
 
 /* Navigation Menu */
@@ -377,27 +400,31 @@ body {
 }
 
 .hero-logo {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto var(--space-xl);
-    background: rgba(33, 150, 243, 0.1);
-    border-radius: 12px;
-    display: flex;
+    background: rgba(33, 150, 243, 0.15);
+    border-radius: 16px;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 20px 60px rgba(33, 150, 243, 0.3);
+    box-shadow: 0 25px 70px rgba(33, 150, 243, 0.4), 0 10px 30px rgba(33, 150, 243, 0.3);
     animation: heroLogoFloat 3s ease-in-out infinite alternate;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(33, 150, 243, 0.2);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    z-index: 10;
 }
 
 .hero-logo img {
-    width: 90px;
-    height: 90px;
+    width: 100px !important;
+    height: 100px !important;
     object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(33, 150, 243, 0.4));
+    filter: drop-shadow(0 6px 15px rgba(33, 150, 243, 0.6)) brightness(1.1) contrast(1.1);
     aspect-ratio: 1/1;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .hero-logo[style*="width: 200px"] img {
@@ -949,14 +976,6 @@ select.form-control {
     font-size: var(--font-sm);
     margin-top: 4px;
     display: none;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.error-message:not(:empty) {
-    display: block;
-    opacity: 1;
 }
 
 .form-control.error {
@@ -1253,20 +1272,30 @@ select.form-control {
     .logo {
         order: 1;
         flex-shrink: 0;
+        display: flex !important;
+        z-index: 10001;
     }
     
     .logo-text {
         font-size: var(--font-xl);
+        display: block !important;
+        opacity: 1 !important;
     }
     
     .logo-icon {
-        width: 36px;
-        height: 36px;
+        width: 42px;
+        height: 42px;
+        background: rgba(33, 150, 243, 0.15);
+        border: 1px solid rgba(33, 150, 243, 0.4);
+        display: flex !important;
     }
     
     .logo-icon img {
-        width: 28px;
-        height: 28px;
+        width: 32px !important;
+        height: 32px !important;
+        display: block !important;
+        opacity: 1 !important;
+        filter: drop-shadow(0 2px 8px rgba(33, 150, 243, 0.6)) brightness(1.2);
     }
 
     .nav-menu {
@@ -1347,8 +1376,20 @@ select.form-control {
     }
 
     .hero-logo {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+        background: rgba(33, 150, 243, 0.2);
+        border: 2px solid rgba(33, 150, 243, 0.4);
+        box-shadow: 0 15px 40px rgba(33, 150, 243, 0.5);
+        display: flex !important;
+    }
+    
+    .hero-logo img {
+        width: 70px !important;
+        height: 70px !important;
+        display: block !important;
+        opacity: 1 !important;
+        filter: drop-shadow(0 4px 12px rgba(33, 150, 243, 0.7)) brightness(1.15);
     }
 
     .cta-buttons {
@@ -1446,39 +1487,18 @@ select.form-control {
         border-radius: var(--radius-sm);
         justify-content: center;
         gap: var(--space-xs);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        color: white;
+        border: none;
         cursor: pointer;
         transition: all var(--transition-normal);
         font-family: 'Outfit', sans-serif;
         font-weight: 600;
-    }
-    
-    .btn-primary {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-        color: white;
-        border: none;
         box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
-    }
-    
-    .btn-secondary {
-        background: var(--glass-bg);
-        color: var(--text-primary);
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(10px);
-        box-shadow: var(--glass-shadow);
     }
     
     .btn:hover {
         transform: translateY(-2px);
-    }
-    
-    .btn-primary:hover {
-        box-shadow: 0 15px 40px rgba(33, 150, 243, 0.4);
-    }
-    
-    .btn-secondary:hover {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-        color: white;
-        border-color: var(--primary);
         box-shadow: 0 15px 40px rgba(33, 150, 243, 0.4);
     }
     
@@ -1689,16 +1709,24 @@ select.form-control {
     
     .logo-text {
         font-size: var(--font-lg);
+        display: block !important;
+        opacity: 1 !important;
     }
     
     .logo-icon {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
+        background: rgba(33, 150, 243, 0.15);
+        border: 1px solid rgba(33, 150, 243, 0.4);
+        display: flex !important;
     }
     
     .logo-icon img {
-        width: 24px;
-        height: 24px;
+        width: 28px !important;
+        height: 28px !important;
+        display: block !important;
+        opacity: 1 !important;
+        filter: drop-shadow(0 2px 6px rgba(33, 150, 243, 0.6)) brightness(1.2);
     }
     
     .mobile-menu-btn {
@@ -1834,44 +1862,6 @@ select.form-control {
         margin-top: var(--space-sm);
         max-width: 100%;
         box-sizing: border-box;
-        cursor: pointer;
-        transition: all var(--transition-normal);
-        font-family: 'Outfit', sans-serif;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-xs);
-    }
-    
-    .btn-primary {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-        color: white;
-        border: none;
-        box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
-    }
-    
-    .btn-secondary {
-        background: var(--glass-bg);
-        color: var(--text-primary);
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(10px);
-        box-shadow: var(--glass-shadow);
-    }
-    
-    .btn:hover {
-        transform: translateY(-1px);
-    }
-    
-    .btn-primary:hover {
-        box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
-    }
-    
-    .btn-secondary:hover {
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-        color: white;
-        border-color: var(--primary);
-        box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
     }
     
     /* Contact Info Mobile */
