@@ -79,6 +79,9 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* Account for fixed navbar */
 }
 
 /* Animated Background */
@@ -158,12 +161,17 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 9999; /* Increased z-index to ensure it's always on top */
     padding: var(--space-sm) 0;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     transition: all var(--transition-normal);
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 60px; /* Ensure minimum height */
+    display: flex;
+    align-items: center;
 }
 
 .navbar.scrolled {
@@ -178,6 +186,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 50px; /* Ensure minimum height for container */
+    position: relative;
 }
 
 /* Logo Styles with Animation */
@@ -335,12 +347,17 @@ body {
     cursor: pointer;
     padding: var(--space-sm);
     transition: all var(--transition-normal);
+    min-width: 44px;
+    min-height: 44px;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .mobile-menu-btn:hover {
     background: var(--primary);
     color: #ffffff;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 /* Hero Section */
@@ -974,8 +991,48 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 var(--space-sm);
+        gap: var(--space-sm);
+    }
+    
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+        order: 3;
+        z-index: 10000; /* Highest z-index to ensure it's always clickable */
+        position: relative;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        font-size: var(--font-lg);
+        cursor: pointer;
+        padding: var(--space-sm);
+        transition: all var(--transition-normal);
+        min-width: 44px;
+        min-height: 44px;
+        flex-shrink: 0;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo {
+        order: 1;
+        flex-shrink: 0;
+    }
+    
+    .logo-text {
+        font-size: var(--font-xl);
+    }
+    
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .logo-icon img {
+        width: 28px;
+        height: 28px;
     }
 
     .nav-menu {
@@ -984,7 +1041,7 @@ textarea.form-control {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(20px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         border-top: 1px solid var(--glass-border);
@@ -992,11 +1049,23 @@ textarea.form-control {
         padding: var(--space-md);
         gap: 0;
         text-align: center;
-        z-index: 1000;
+        z-index: 9998; /* High z-index to ensure visibility */
+        order: 4;
+        width: 100%;
+        box-sizing: border-box;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        pointer-events: none;
     }
 
     .nav-menu.active {
         display: flex;
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
     }
     
     .nav-menu li {
@@ -1007,12 +1076,14 @@ textarea.form-control {
     
     .nav-menu .nav-link {
         display: block;
-        padding: 12px 0;
+        padding: var(--space-sm) 0;
         margin: 0;
         font-size: 16px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         width: 100%;
         text-align: center;
+        min-height: 44px;
+        line-height: 1.5;
     }
     
     .nav-menu li:nth-last-child(2) .nav-link,
@@ -1021,15 +1092,20 @@ textarea.form-control {
     }
     
     .nav-menu .theme-toggle {
-        margin: 15px auto;
-        width: 45px;
-        height: 45px;
+        margin: var(--space-sm) auto;
+        width: 44px;
+        height: 44px;
         font-size: 18px;
+        flex-shrink: 0;
     }
 
     /* Mobile Section Spacing Override */
     .section[style*="padding-top"] {
-        padding-top: 100px !important;
+        padding-top: 30px !important;
+    }
+    
+    body {
+        padding-top: 60px;
     }
 
     .hero {
@@ -1191,6 +1267,35 @@ textarea.form-control {
 
 @media (max-width: 480px) {
     /* Extra small mobile devices */
+    .nav-container {
+        padding: 0 var(--space-xs);
+    }
+    
+    .logo-text {
+        font-size: var(--font-lg);
+    }
+    
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-icon img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .mobile-menu-btn {
+        padding: var(--space-xs);
+        min-width: 40px;
+        min-height: 40px;
+        font-size: var(--font-base);
+    }
+    
+    .navbar {
+        padding: var(--space-xs) 0;
+    }
+    
     .container {
         padding: 0 var(--space-sm);
     }
@@ -1201,7 +1306,11 @@ textarea.form-control {
     
     /* Mobile Section Spacing Override for smaller screens */
     .section[style*="padding-top"] {
-        padding-top: 80px !important;
+        padding-top: 20px !important;
+    }
+    
+    body {
+        padding-top: 50px;
     }
     
     .section-header h2 {
