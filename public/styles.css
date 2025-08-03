@@ -1045,39 +1045,13 @@ select.form-control {
 .footer-section a {
     color: var(--text-secondary);
     text-decoration: none;
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    transition: color var(--transition-normal);
     display: inline-block;
     margin: 2px 0;
-    transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
-}
-
-.footer-section a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.6s ease;
-}
-
-.footer-section a:hover::before {
-    left: 100%;
 }
 
 .footer-section a:hover {
-    color: var(--text-primary);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+    color: var(--primary);
 }
 
 .footer-links {
@@ -1103,6 +1077,17 @@ select.form-control {
     justify-content: center;
     color: var(--text-secondary);
     transition: all var(--transition-normal);
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.social-link i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .social-link:hover {
@@ -1575,6 +1560,18 @@ select.form-control {
         width: 40px;
         height: 40px;
         font-size: var(--font-base);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+    
+    .contact-info .social-link i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
     }
     
     /* Mobile About Page Styles */
@@ -1910,6 +1907,18 @@ select.form-control {
         width: 36px;
         height: 36px;
         font-size: var(--font-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+    
+    .contact-info .social-link i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
     }
     
     /* Section Header Mobile */
