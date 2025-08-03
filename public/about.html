@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about DevPy's mission to deliver cutting-edge technology solutions and our experienced team of developers and designers.">
+    <meta name="keywords" content="DevPy about, technology company, web development team, software development">
+    <meta name="author" content="DevPy">
+    
+    <title>About DevPy - Our Mission, Vision & Technology Stack</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%232196F3' d='M20 30h60l-10 40H30z'/%3E%3C/svg%3E">
+    
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo with DevPy branding -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="logo.png" alt="DevPy Logo">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                <li><a href="about.html" class="nav-link active" data-page="about">About</a></li>
+                <li><a href="services.html" class="nav-link" data-page="services">Services</a></li>
+                <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>About DevPy</h2>
+                    <p>
+                        DevPy is a forward-thinking technology company dedicated to crafting exceptional 
+                        digital experiences. Founded with a vision to bridge the gap between innovative 
+                        ideas and practical solutions, we specialize in web development, mobile applications, 
+                        and cloud infrastructure.
+                    </p>
+                    <p>
+                        Our team of experienced developers, designers, and strategists work collaboratively 
+                        to deliver solutions that not only meet your current needs but scale with your 
+                        future ambitions. We believe in the power of clean code, intuitive design, 
+                        and robust architecture.
+                    </p>
+                    <p>
+                        From startups to enterprise-level organizations, we've helped businesses across 
+                        various industries transform their digital presence and streamline their operations 
+                        through technology.
+                    </p>
+                    
+                    <!-- Technology Stack -->
+                    <div class="tech-stack">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">Django</span>
+                        <span class="tech-item">FastAPI</span>
+                        <span class="tech-item">AWS</span>
+                        <span class="tech-item">Docker</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">Redis</span>
+                        <span class="tech-item">GraphQL</span>
+                    </div>
+                </div>
+                
+                <div class="about-visual" data-aos="fade-left">
+                    <!-- Large DevPy Logo with Animation -->
+                    <div style="text-align: center;">
+                        <div class="hero-logo" style="width: 200px; height: 200px; margin: 0 auto;">
+                            <img src="logo.png" alt="DevPy Logo">
+                        </div>
+                        <h3 style="margin-top: 2rem; color: var(--text-primary); font-size: 2rem; font-weight: 700;">
+                            Innovate. Develop. Deploy.
+                        </h3>
+                        <p style="color: var(--text-secondary); font-size: 1.1rem; margin-top: 1rem;">
+                            Our mission is to empower businesses through innovative technology solutions 
+                            that drive growth and efficiency.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mission, Vision, Values -->
+            <div class="services-grid" style="margin-top: 4rem;">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To deliver cutting-edge technology solutions that transform businesses and create lasting value for our clients and their customers.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading technology partner for businesses seeking innovation, reliability, and excellence in their digital transformation journey.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Innovation, integrity, collaboration, and excellence drive everything we do. We believe in building long-term partnerships based on trust and results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <img src="logo.png" alt="DevPy Logo">
+                        </div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with cutting-edge development and innovative solutions.</p>
+                    <div class="social-links" style="text-align: center; margin-top: 1rem;">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="services.html">Web Development</a>
+                        <a href="services.html">AI Based Projects</a>
+                        <a href="services.html">Cloud Solutions</a>
+                        <a href="services.html">DevOps</a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-envelope"></i> devpy1999@gmail.com
+                        </a>
+                        <a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-phone"></i> +92 309 7609121
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: var(--font-sm);">
+                        Mon - Sat: 9:00 AM - 8:00 PM
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. All rights reserved. | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

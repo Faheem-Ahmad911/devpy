@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ready to start your next project? Contact DevPy today to discuss how we can help bring your vision to life with our technology solutions.">
+    <meta name="keywords" content="contact DevPy, get in touch, project inquiry, web development contact">
+    <meta name="author" content="DevPy">
+    
+    <title>Contact DevPy - Get In Touch for Your Next Project</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%232196F3' d='M20 30h60l-10 40H30z'/%3E%3C/svg%3E">
+    
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo with DevPy branding -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="logo.png" alt="DevPy Logo">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
+                <li><a href="services.html" class="nav-link" data-page="services">Services</a></li>
+                <li><a href="contact.html" class="nav-link active" data-page="contact">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your next project? Let's discuss how we can help bring your vision to life.</p>
+            </div>
+            
+            <div class="contact-content">
+                <!-- Contact Form -->
+                <div class="contact-form" data-aos="fade-right">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" class="form-control" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select class="form-control" id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="ai-projects">AI Based Projects</option>
+                                <option value="cloud-solutions">Cloud Solutions</option>
+                                <option value="api-development">API Development</option>
+                                <option value="database-solutions">Database Solutions</option>
+                                <option value="devops">DevOps & Automation</option>
+                                <option value="consultation">General Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Project Details *</label>
+                            <textarea class="form-control" id="message" name="message" placeholder="Tell us about your project requirements, timeline, and any specific needs..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info" data-aos="fade-left">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <p>
+                                <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                                    devpy1999@gmail.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Call Us</h4>
+                            <p><a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">+92 309 7609121</a></p>
+                            <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Follow Us</h4>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <img src="logo.png" alt="DevPy Logo">
+                        </div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with cutting-edge development and innovative solutions.</p>
+                    <div class="social-links" style="text-align: center; margin-top: 1rem;">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="services.html">Web Development</a>
+                        <a href="services.html">AI Based Projects</a>
+                        <a href="services.html">Cloud Solutions</a>
+                        <a href="services.html">DevOps</a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-envelope"></i> devpy1999@gmail.com
+                        </a>
+                        <a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-phone"></i> +92 309 7609121
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: var(--font-sm);">
+                        Mon - Sat: 9:00 AM - 8:00 PM
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. All rights reserved. | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      // Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4B-y7gsWIfdL5uW-gxaqsLyUKzmiM0Zk",
+        authDomain: "devpy-contact.firebaseapp.com",
+        projectId: "devpy-contact",
+        storageBucket: "devpy-contact.firebasestorage.app",
+        messagingSenderId: "181904310058",
+        appId: "1:181904310058:web:4a2910e7f10c2ff4ea2853",
+        measurementId: "G-JPE1T0CNGK"
+      };
+
+      // Initialize Firebase with compat version
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

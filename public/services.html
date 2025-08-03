@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive technology services including web development, mobile apps, cloud infrastructure, API development, and DevOps solutions.">
+    <meta name="keywords" content="web development, mobile apps, cloud solutions, API development, DevOps, DevPy services">
+    <meta name="author" content="DevPy">
+    
+    <title>DevPy Services - Web Development, Mobile Apps & Cloud Solutions</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%232196F3' d='M20 30h60l-10 40H30z'/%3E%3C/svg%3E">
+    
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo with DevPy branding -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="logo.png" alt="DevPy Logo">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
+                <li><a href="services.html" class="nav-link active" data-page="services">Services</a></li>
+                <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section class="section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Services</h2>
+                <p>Comprehensive technology solutions tailored to your business needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Web Development -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom web applications, e-commerce platforms, and progressive web apps built with modern frameworks like React, Vue.js, and Django. We focus on performance, scalability, and user experience.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">Django</span>
+                        <span class="tech-item">FastAPI</span>
+                    </div>
+                </div>
+                
+                <!-- AI Based Projects -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Based Projects</h3>
+                    <p>Artificial Intelligence and Machine Learning solutions that drive business innovation. From predictive analytics to intelligent automation and data-driven insights.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">TensorFlow</span>
+                        <span class="tech-item">PyTorch</span>
+                        <span class="tech-item">OpenAI</span>
+                        <span class="tech-item">Scikit-learn</span>
+                    </div>
+                </div>
+                
+                <!-- Cloud Solutions -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Scalable cloud solutions on AWS, Azure, and Google Cloud. Including containerization, CI/CD pipelines, monitoring, and security implementation.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">AWS</span>
+                        <span class="tech-item">Docker</span>
+                        <span class="tech-item">Kubernetes</span>
+                        <span class="tech-item">Terraform</span>
+                    </div>
+                </div>
+                
+                <!-- API Development -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>API Development</h3>
+                    <p>RESTful and GraphQL APIs designed for scalability, security, and performance. Complete with documentation, testing, and monitoring solutions.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">GraphQL</span>
+                        <span class="tech-item">REST</span>
+                        <span class="tech-item">OpenAPI</span>
+                        <span class="tech-item">JWT</span>
+                    </div>
+                </div>
+                
+                <!-- Database Solutions -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database Solutions</h3>
+                    <p>Database design, optimization, and management for both SQL and NoSQL systems. Including data migration, backup strategies, and performance tuning.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">Redis</span>
+                        <span class="tech-item">Elasticsearch</span>
+                    </div>
+                </div>
+                
+                <!-- DevOps & Automation -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>DevOps & Automation</h3>
+                    <p>Complete DevOps solutions including CI/CD pipelines, infrastructure as code, monitoring, logging, and automated testing frameworks.</p>
+                    <div class="tech-stack" style="margin-top: 1rem; justify-content: center;">
+                        <span class="tech-item">GitHub Actions</span>
+                        <span class="tech-item">Jenkins</span>
+                        <span class="tech-item">Ansible</span>
+                        <span class="tech-item">Prometheus</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process Section -->
+            <div class="section-header" style="margin-top: 4rem;" data-aos="fade-up">
+                <h2>Our Development Process</h2>
+                <p>A proven methodology that ensures project success from concept to deployment</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>1. Discovery & Planning</h3>
+                    <p>We start by understanding your business goals, target audience, and technical requirements to create a comprehensive project roadmap.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>2. Design & Architecture</h3>
+                    <p>Our team creates detailed wireframes, prototypes, and system architecture ensuring optimal user experience and scalability.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>3. Development</h3>
+                    <p>Agile development with clean code practices, modern frameworks, and continuous integration to build robust and scalable applications.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>4. Testing</h3>
+                    <p>Comprehensive testing including unit tests, integration tests, and user acceptance testing to ensure high-quality deliverables.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>5. Deployment</h3>
+                    <p>Seamless deployment to production environments with automated CI/CD pipelines and infrastructure monitoring for optimal performance.</p>
+                </div>
+                
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>6. Support and Maintenance</h3>
+                    <p>Ongoing maintenance, monitoring, updates, and technical support to ensure your application continues to perform at its best.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <img src="logo.png" alt="DevPy Logo">
+                        </div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with cutting-edge development and innovative solutions.</p>
+                    <div class="social-links" style="text-align: center; margin-top: 1rem;">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/devpy_developers?utm_source=qr&igsh=Zzc5ZzhiMWs0eDM3" class="social-link" title="Instagram" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="services.html">Web Development</a>
+                        <a href="services.html">AI Based Projects</a>
+                        <a href="services.html">Cloud Solutions</a>
+                        <a href="services.html">DevOps</a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:devpy1999@gmail.com" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-envelope"></i> devpy1999@gmail.com
+                        </a>
+                        <a href="tel:+923097609121" style="color: var(--text-secondary); text-decoration: none;">
+                            <i class="fas fa-phone"></i> +92 309 7609121
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: var(--font-sm);">
+                        Mon - Sat: 9:00 AM - 8:00 PM
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. All rights reserved. | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
