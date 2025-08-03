@@ -949,6 +949,14 @@ select.form-control {
     font-size: var(--font-sm);
     margin-top: 4px;
     display: none;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.error-message:not(:empty) {
+    display: block;
+    opacity: 1;
 }
 
 .form-control.error {

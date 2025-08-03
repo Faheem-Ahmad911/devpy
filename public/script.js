@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize form submission
     initFormSubmission();
     
+    // Initialize form validation
+    initFormValidation();
+    
     // Animate statistics counters
     animateCounters();
     
@@ -262,6 +265,26 @@ function initFormSubmission() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', handleFormSubmission);
+        
+        // Prevent submission with Enter key if form is invalid
+        contactForm.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                
+                // If it's the submit button or last field, try to submit
+                if (e.target.type === 'submit' || e.target === document.getElementById('message')) {
+                    contactForm.dispatchEvent(new Event('submit'));
+                } else {
+                    // Move to next field
+                    const formElements = Array.from(contactForm.elements);
+                    const currentIndex = formElements.indexOf(e.target);
+                    const nextElement = formElements[currentIndex + 1];
+                    if (nextElement && nextElement.focus) {
+                        nextElement.focus();
+                    }
+                }
+            }
+        });
     }
 }
 
@@ -269,13 +292,25 @@ function initFormSubmission() {
 async function handleFormSubmission(e) {
     e.preventDefault();
     
+    // Validate form before submission
+    if (!validateForm()) {
+        showNotification('Please fill in all required fields correctly.', 'error');
+        return;
+    }
+    
     // Get form data
     const formData = new FormData(e.target);
     const formObject = {};
     
     formData.forEach((value, key) => {
-        formObject[key] = value;
+        formObject[key] = value.trim(); // Trim whitespace
     });
+
+    // Check if all required fields have actual content (not just whitespace)
+    if (!formObject.name || !formObject.email || !formObject.message) {
+        showNotification('Please fill in all required fields.', 'error');
+        return;
+    }
 
     // Show loading state
     const submitButton = e.target.querySelector('button[type="submit"]');
@@ -299,12 +334,14 @@ async function handleFormSubmission(e) {
             showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
 
             e.target.reset();
+            clearFormErrors(); // Clear any validation errors
         } else {
             // Fallback for when Firebase is not available
             showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
             submitButton.innerHTML = '<i class="fas fa-check"></i> Message Received!';
             submitButton.style.background = '#10b981';
             e.target.reset();
+            clearFormErrors(); // Clear any validation errors
         }
 
     } catch (error) {
@@ -322,6 +359,163 @@ async function handleFormSubmission(e) {
         submitButton.disabled = false;
         submitButton.style.background = '';
     }, 3000);
+}
+
+// Form validation functions
+function validateForm() {
+    let isValid = true;
+    
+    // Clear previous errors
+    clearFormErrors();
+    
+    // Validate name
+    const name = document.getElementById('name');
+    const nameValue = name.value.trim();
+    if (!nameValue) {
+        showFieldError('nameError', 'Name is required');
+        name.classList.add('error');
+        isValid = false;
+    } else if (nameValue.length < 2) {
+        showFieldError('nameError', 'Name must be at least 2 characters');
+        name.classList.add('error');
+        isValid = false;
+    } else {
+        name.classList.remove('error');
+        name.classList.add('success');
+    }
+    
+    // Validate email
+    const email = document.getElementById('email');
+    const emailValue = email.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValue) {
+        showFieldError('emailError', 'Email is required');
+        email.classList.add('error');
+        isValid = false;
+    } else if (!emailRegex.test(emailValue)) {
+        showFieldError('emailError', 'Please enter a valid email address');
+        email.classList.add('error');
+        isValid = false;
+    } else {
+        email.classList.remove('error');
+        email.classList.add('success');
+    }
+    
+    // Validate message
+    const message = document.getElementById('message');
+    const messageValue = message.value.trim();
+    if (!messageValue) {
+        showFieldError('messageError', 'Message is required');
+        message.classList.add('error');
+        isValid = false;
+    } else if (messageValue.length < 10) {
+        showFieldError('messageError', 'Message must be at least 10 characters');
+        message.classList.add('error');
+        isValid = false;
+    } else {
+        message.classList.remove('error');
+        message.classList.add('success');
+    }
+    
+    return isValid;
+}
+
+function showFieldError(errorId, message) {
+    const errorElement = document.getElementById(errorId);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+}
+
+function clearFormErrors() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(error => {
+        error.textContent = '';
+        error.style.display = 'none';
+    });
+    
+    const formControls = document.querySelectorAll('.form-control');
+    formControls.forEach(control => {
+        control.classList.remove('error', 'success');
+    });
+}
+
+// Add real-time validation
+function initFormValidation() {
+    const formFields = ['name', 'email', 'message'];
+    
+    formFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('blur', function() {
+                validateSingleField(fieldId);
+            });
+            
+            field.addEventListener('input', function() {
+                // Clear error state when user starts typing
+                if (field.classList.contains('error')) {
+                    field.classList.remove('error');
+                    const errorElement = document.getElementById(fieldId + 'Error');
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                    }
+                }
+            });
+        }
+    });
+}
+
+function validateSingleField(fieldId) {
+    const field = document.getElementById(fieldId);
+    const value = field.value.trim();
+    let isValid = true;
+    
+    switch(fieldId) {
+        case 'name':
+            if (!value) {
+                showFieldError('nameError', 'Name is required');
+                field.classList.add('error');
+                isValid = false;
+            } else if (value.length < 2) {
+                showFieldError('nameError', 'Name must be at least 2 characters');
+                field.classList.add('error');
+                isValid = false;
+            }
+            break;
+            
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!value) {
+                showFieldError('emailError', 'Email is required');
+                field.classList.add('error');
+                isValid = false;
+            } else if (!emailRegex.test(value)) {
+                showFieldError('emailError', 'Please enter a valid email address');
+                field.classList.add('error');
+                isValid = false;
+            }
+            break;
+            
+        case 'message':
+            if (!value) {
+                showFieldError('messageError', 'Message is required');
+                field.classList.add('error');
+                isValid = false;
+            } else if (value.length < 10) {
+                showFieldError('messageError', 'Message must be at least 10 characters');
+                field.classList.add('error');
+                isValid = false;
+            }
+            break;
+    }
+    
+    if (isValid) {
+        field.classList.remove('error');
+        field.classList.add('success');
+    }
+    
+    return isValid;
 }
 
 /**
