@@ -14,10 +14,10 @@
     --bg-card: rgba(255, 255, 255, 0.03);
     --bg-glass: rgba(255, 255, 255, 0.06);
     
-    /* Text Colors */
+    /* Text Colors - Improved contrast ratios */
     --text-primary: #ffffff;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
+    --text-secondary: #b5bac5; /* Improved from #9ca3af for better contrast */
+    --text-muted: #8b949e; /* Improved from #6b7280 for better contrast */
     
     /* Glassmorphism Variables */
     --glass-bg: rgba(255, 255, 255, 0.04);

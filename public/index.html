@@ -15,6 +15,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://www.devpy.tech/logo.png" />
 
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://www.devpy.tech/logo.png" as="image" type="image/png">
+
     <!-- Structured Data for Google Rich Results -->
     <script type="application/ld+json">
     {
@@ -38,16 +42,19 @@
     }
     </script>
 
-    <!-- Google Fonts - Outfit for modern typography -->
+    <!-- Google Fonts - Outfit for modern typography with optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"></noscript>
 
-    <!-- AOS Animation Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Font Awesome for icons - non-blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library - non-blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -68,7 +75,7 @@
             <!-- Logo -->
             <a href="index.html" class="logo">
                 <div class="logo-icon">
-                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo">
+                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="eager">
                 </div>
                 <span class="logo-text">DevPy</span>
             </a>
@@ -81,14 +88,14 @@
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                 <li>
                     <!-- Theme Toggle -->
-                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
                         <i class="fas fa-moon" id="themeIcon"></i>
                     </button>
                 </li>
             </ul>
 
             <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" aria-expanded="false">
                 <i class="fas fa-bars" id="mobileMenuIcon"></i>
             </button>
         </div>
@@ -98,7 +105,7 @@
     <section class="hero">
         <div class="hero-content" data-aos="fade-up">
             <div class="hero-logo">
-                <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo">
+                <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="200" height="200" loading="eager">
             </div>
             <h1>Premium Tech Solutions</h1>
             <p>
@@ -162,7 +169,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="logo" style="margin-bottom: 1rem;">
-                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo"></div>
+                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="lazy"></div>
                         <span class="logo-text">DevPy</span>
                     </div>
                     <p>Transforming ideas into powerful digital experiences with innovative development.</p>
@@ -207,14 +214,14 @@
     </footer>
 
     <!-- Scroll to Top -->
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top of page">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
 
     <!-- Custom JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
