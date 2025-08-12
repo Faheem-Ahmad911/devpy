@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://devpy.tech/sitemap.xml
+Sitemap: https://www.devpy.tech/sitemap.xml
