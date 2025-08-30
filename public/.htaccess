@@ -16,12 +16,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} /(.+)/$
 RewriteRule ^ https://www.devpy.tech/%1 [R=301,L]
 
-# Redirect /home to index.html (internal rewrite - user sees /home in URL)
-RewriteRule ^home/?$ /index.html [L]
-
-# Redirect index.html to /home (external redirect)
+# Redirect index.html to root URL
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.html[\s?] [NC]
-RewriteRule ^index\.html$ https://www.devpy.tech/home [R=301,L]
+RewriteRule ^index\.html$ https://www.devpy.tech/ [R=301,L]
 
 # Custom Error Pages
 ErrorDocument 404 /404.html
