@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional database solutions - database design, optimization, migration, backup, and maintenance services for modern applications.">
+    <meta name="keywords" content="database solutions, database design, database optimization, data migration, DevPy">
+    <meta name="author" content="DevPy">
+    <meta name="robots" content="index, follow">
+
+    <title>Database Solutions - DevPy | Database Design & Optimization</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.devpy.tech/database-solutions.html" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="logo.png" as="image" type="image/png">
+
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- AOS Animation Library -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="eager">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" aria-expanded="false">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content" data-aos="fade-up">
+                <div class="service-icon-large">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h1>Database Solutions</h1>
+                <p class="hero-subtitle">
+                    Comprehensive database services from design to optimization. We create robust, scalable database 
+                    solutions that ensure data integrity, performance, and reliability for your applications.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Databases Built</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.99%</span>
+                        <span class="stat-label">Data Integrity</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10TB+</span>
+                        <span class="stat-label">Data Managed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="service-overview">
+                <div class="overview-content" data-aos="fade-right">
+                    <h2>Expert Database Solutions</h2>
+                    <p>
+                        At DevPy, we understand that data is the backbone of modern applications. Our database solutions 
+                        are designed to handle everything from simple data storage to complex enterprise-level data 
+                        management systems with millions of records.
+                    </p>
+                    <p>
+                        Whether you need a new database design, performance optimization, or data migration, our experts 
+                        deliver solutions that are secure, scalable, and optimized for your specific business requirements.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Database Design & Architecture</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Performance Optimization</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Data Migration & Backup</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Monitoring & Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Services -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Database Services</h2>
+                <p>Complete database solutions for all your data management needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Database Design & Architecture</h3>
+                    <p>Create efficient database schemas with proper normalization, indexing strategies, and relationship modeling for optimal performance.</p>
+                    <ul class="ai-features">
+                        <li>Entity relationship modeling</li>
+                        <li>Schema design & normalization</li>
+                        <li>Index optimization</li>
+                        <li>Constraint implementation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performance Optimization</h3>
+                    <p>Optimize database performance through query tuning, indexing strategies, and efficient database configuration for faster response times.</p>
+                    <ul class="ai-features">
+                        <li>Query optimization</li>
+                        <li>Index tuning</li>
+                        <li>Database configuration</li>
+                        <li>Performance monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Data Migration</h3>
+                    <p>Seamless data migration between different database systems with zero downtime and complete data integrity preservation.</p>
+                    <ul class="ai-features">
+                        <li>Database migration planning</li>
+                        <li>Data transformation</li>
+                        <li>Zero-downtime migration</li>
+                        <li>Data validation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Backup & Recovery</h3>
+                    <p>Implement robust backup strategies and disaster recovery plans to ensure your data is always protected and recoverable.</p>
+                    <ul class="ai-features">
+                        <li>Automated backup systems</li>
+                        <li>Point-in-time recovery</li>
+                        <li>Disaster recovery planning</li>
+                        <li>Backup testing & validation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Database Analytics</h3>
+                    <p>Transform your data into actionable insights with advanced analytics, reporting, and business intelligence solutions.</p>
+                    <ul class="ai-features">
+                        <li>Data warehousing</li>
+                        <li>ETL processes</li>
+                        <li>Business intelligence</li>
+                        <li>Custom reporting</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Database Maintenance</h3>
+                    <p>Ongoing database maintenance and monitoring services to ensure optimal performance, security, and data integrity.</p>
+                    <ul class="ai-features">
+                        <li>Regular maintenance tasks</li>
+                        <li>Security updates</li>
+                        <li>Performance monitoring</li>
+                        <li>Health checks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Technologies -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Technologies We Use</h2>
+                <p>Expertise across all major database platforms and technologies</p>
+            </div>
+            
+            <div class="tech-badges" data-aos="fade-up" data-aos-delay="200">
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">MySQL</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Redis</span>
+                <span class="tech-badge">AWS RDS</span>
+                <span class="tech-badge">Google Cloud SQL</span>
+                <span class="tech-badge">Azure SQL</span>
+                <span class="tech-badge">Firebase</span>
+                <span class="tech-badge">Elasticsearch</span>
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">Oracle DB</span>
+                <span class="tech-badge">Supabase</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Database Success Stories</h2>
+                <p>Real-world examples of our database solutions in action</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Healthcare Data System</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Designed a HIPAA-compliant database system handling 10M+ patient records with advanced security and real-time analytics.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10M+</span>
+                                <span class="metric-label">Patient Records</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">HIPAA Compliance</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Encryption</span>
+                            <span class="tech-tag">Backup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>E-commerce Analytics Platform</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Built a real-time analytics database processing 1M+ transactions daily with sub-second query performance for business insights.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">1M+</span>
+                                <span class="metric-label">Daily Transactions</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">&lt;500ms</span>
+                                <span class="metric-label">Query Time</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Educational Data Migration</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Successfully migrated 50+ legacy databases to a modern cloud infrastructure with zero data loss and minimal downtime.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">Databases Migrated</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">0%</span>
+                                <span class="metric-label">Data Loss</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">AWS RDS</span>
+                            <span class="tech-tag">Migration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Optimize Your Database?</h2>
+                <p>Let's build robust, scalable database solutions that power your applications and drive your business growth. Our expert team is ready to help you manage your data efficiently.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Start Your Project
+                    </a>
+                    <a href="tel:+923097609121" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Discuss Requirements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="lazy"></div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with innovative development.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/devpy_developers" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="web-development.html">Web Development</a>
+                        <a href="ai-projects.html">AI Based Projects</a>
+                        <a href="cloud-solutions.html">Cloud Solutions</a>
+                        <a href="database-solutions.html">Database Solutions</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:contact@devpy.tech"><i class="fas fa-envelope"></i> contact@devpy.tech</a>
+                        <a href="tel:+923097609121"><i class="fas fa-phone"></i> +92 309 7609121</a>
+                    </div>
+                    <p style="margin-top: 1rem;">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. <a href="legal.html">All rights reserved.</a> | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>

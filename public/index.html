@@ -79,6 +79,31 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase Configuration -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Firebase configuration - Using existing DevPy Contact project
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4B-y7gsWIfdL5uW-gxaqsLyUKzmiM0Zk",
+            authDomain: "devpy-contact.firebaseapp.com",
+            projectId: "devpy-contact",
+            storageBucket: "devpy-contact.firebasestorage.app",
+            messagingSenderId: "181904310058",
+            appId: "1:181904310058:web:4a2910e7f10c2ff4ea2853",
+            measurementId: "G-JPE1T0CNGK"
+        };
+
+        // Initialize Firebase
+        try {
+            firebase.initializeApp(firebaseConfig);
+            console.log('Firebase initialized successfully for DevPy Contact project');
+            console.log('Newsletter subscriptions will be stored alongside contact forms');
+        } catch (error) {
+            console.error('Firebase initialization failed:', error);
+        }
+    </script>
 </head>
 
 <body>
@@ -157,16 +182,109 @@
                     <div class="service-icon"><i class="fas fa-code"></i></div>
                     <h3>Web Development</h3>
                     <p>Modern, responsive websites and web apps with latest tech and performance practices.</p>
+                    <a href="web-development.html" class="learn-more-btn">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="fas fa-brain"></i></div>
                     <h3>AI Based Projects</h3>
                     <p>Innovative AI-based solutions to automate and enhance business processes.</p>
+                    <a href="ai-projects.html" class="learn-more-btn">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon"><i class="fas fa-cloud"></i></div>
                     <h3>Cloud Solutions</h3>
                     <p>Scalable cloud infrastructure and deployments with AWS, Azure, and GCP.</p>
+                    <a href="cloud-solutions.html" class="learn-more-btn">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-dark testimonials-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>What Our Clients Say</h2>
+                <p>Real experiences from satisfied customers who trust DevPy for their technology needs</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"DevPy transformed our business with their amazing web development skills. The team delivered exactly what we needed, on time and within budget. Highly recommended!"</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" alt="Ahmed Hassan" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Thompson</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"The AI solutions DevPy built for us have revolutionized our operations. Their expertise in machine learning and automation is outstanding. Excellent work!"</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80" alt="Jennifer Miller" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jennifer Miller</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"DevPy's database optimization work improved our performance by 300%. Their attention to detail and expertise in database management is unmatched."</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="images/business-portrait-confident-businessman-entrepreneur-260nw-2480068229.webp" alt="Waleed" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Waleed Al-Omar</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,6 +298,43 @@
                 <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="97">0</span><span class="stat-label">Client Satisfaction %</span></div>
                 <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="24">0</span><span class="stat-label">7 Support</span></div>
                 <div class="stat-item" data-aos="fade-up"><span class="stat-number" data-count="2">0</span><span class="stat-label">Years Experience</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section newsletter-section bg-dark">
+        <div class="container">
+            <div class="newsletter-content" data-aos="fade-up">
+                <div class="newsletter-header">
+                    <h2>Stay Updated with DevPy</h2>
+                    <p>Subscribe to our newsletter and get the latest tech insights, project updates, and exclusive offers delivered to your inbox.</p>
+                </div>
+                <div class="newsletter-form">
+                    <form id="newsletterForm" class="newsletter-form-container">
+                        <div class="form-group">
+                            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Subscribe
+                            </button>
+                        </div>
+                        <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+                    </form>
+                </div>
+                <div class="newsletter-features">
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Tech Insights</span>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-rocket"></i>
+                        <span>Project Updates</span>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-gift"></i>
+                        <span>Exclusive Offers</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -229,7 +384,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 DevPy. All rights reserved. | DevPy Technologies</p>
+                <p>&copy; 2025 DevPy. <a href="legal.html">All rights reserved.</a> | DevPy Technologies</p>
             </div>
         </div>
     </footer>

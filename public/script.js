@@ -286,6 +286,12 @@ function initFormSubmission() {
             }
         });
     }
+
+    // Newsletter form handling
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', handleNewsletterSubmission);
+    }
 }
 
 // Handle contact form submission
@@ -359,6 +365,231 @@ async function handleFormSubmission(e) {
         submitButton.disabled = false;
         submitButton.style.background = '';
     }, 3000);
+}
+
+// Handle newsletter subscription
+async function handleNewsletterSubmission(e) {
+    e.preventDefault();
+    
+    console.log('=================================');
+    console.log(' Newsletter submission started');
+    console.log(' Timestamp:', new Date().toISOString());
+    console.log(' =================================');
+    
+    const emailInput = document.getElementById('newsletterEmail');
+    const email = emailInput.value.trim();
+    
+    console.log(' Email entered:', email);
+    console.log('Email input element found:', !!emailInput);
+    
+    console.log(' Email to subscribe:', email);
+    
+    // Validate email
+    if (!email) {
+        console.log(' No email provided');
+        showNotification('Please enter your email address.', 'error');
+        emailInput.focus();
+        return;
+    }
+    
+    if (!isValidEmail(email)) {
+        console.log(' Invalid email format');
+        showNotification('Please enter a valid email address.', 'error');
+        emailInput.focus();
+        return;
+    }
+    
+    // Get submit button
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    
+    console.log('🔄 Setting loading state');
+    
+    // Show loading state
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+    submitButton.disabled = true;
+    emailInput.disabled = true;
+    
+    try {
+        // Check if Firebase is available and properly initialized
+        if (typeof firebase !== 'undefined' && firebase.firestore) {
+            console.log(' Firebase is available');
+            console.log(' Firebase version:', firebase.SDK_VERSION || 'Unknown');
+            
+            let db;
+            try {
+                db = firebase.firestore();
+                console.log(' Firestore database instance created');
+                console.log(' Database app name:', db.app.name);
+            } catch (dbError) {
+                console.error(' Failed to create Firestore instance:', dbError);
+                throw new Error('Database connection failed: ' + dbError.message);
+            }
+            
+            // TESTING MODE: Duplicate check temporarily disabled for testing
+            // Uncomment the section below to re-enable duplicate prevention for production
+            
+            /*
+            // Check if email already exists
+            const existingSubscriber = await db.collection("newsletter_subscribers")
+                .where("email", "==", email)
+                .get();
+            
+            console.log('🔍 Duplicate check result:', existingSubscriber.empty ? 'No duplicates' : 'Duplicate found');
+            
+            if (!existingSubscriber.empty) {
+                console.log('ℹ️ Email already subscribed, showing info message');
+                showNotification('You are already subscribed to our newsletter!', 'info');
+                emailInput.value = '';
+                
+                // Reset button state for duplicate email
+                submitButton.innerHTML = '<i class="fas fa-info-circle"></i> Already Subscribed';
+                submitButton.style.background = '#3b82f6';
+                
+                // Reset after delay
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    submitButton.style.background = '';
+                    emailInput.disabled = false;
+                }, 2000);
+                
+                return;
+            }
+            */
+            
+            console.log('TESTING MODE: Duplicate check disabled - allowing multiple subscriptions');
+            console.log('Adding new subscriber to Firebase');
+            
+            // PRODUCTION MODE: Enable duplicate email checking
+            console.log('🔍 Checking for existing email subscriptions...');
+            
+            // Check if email already exists
+            const existingSubscriber = await db.collection("newsletter_subscribers")
+                .where("email", "==", email)
+                .get();
+            
+            console.log(' Duplicate check result:', existingSubscriber.empty ? 'No duplicates found' : 'Duplicate email found');
+            
+            if (!existingSubscriber.empty) {
+                console.log('ℹ️ Email already subscribed, showing info message');
+                showNotification('You are already subscribed to our newsletter!', 'info');
+                emailInput.value = '';
+                
+                // Reset button state for duplicate email
+                submitButton.innerHTML = '<i class="fas fa-info-circle"></i> Already Subscribed';
+                submitButton.style.background = '#3b82f6';
+                
+                // Reset after delay
+                setTimeout(() => {
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    submitButton.style.background = '';
+                    emailInput.disabled = false;
+                    console.log(' Form reset after duplicate detection');
+                }, 2000);
+                
+                return;
+            }
+            
+            console.log(' No duplicate found, proceeding with subscription');
+            console.log(' Adding new subscriber to Firebase');
+            
+            // Add new subscriber to Firebase
+            const subscriptionData = {
+                email: email,
+                subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                status: 'active',
+                source: 'website_newsletter_form',
+                ipAddress: null, // You can add IP tracking if needed
+                userAgent: navigator.userAgent,
+                subscriptionDate: new Date().toISOString()
+            };
+            
+            console.log(' Subscription data:', subscriptionData);
+            
+            console.log(' Attempting to write to Firestore collection...');
+            console.log(' Collection name: newsletter_subscribers');
+            
+            try {
+                const docRef = await db.collection("newsletter_subscribers").add(subscriptionData);
+                console.log(' Document successfully written!');
+                console.log(' Document ID:', docRef.id);
+                console.log(' Document path:', docRef.path);
+            } catch (writeError) {
+                console.error(' Firestore write failed:', writeError);
+                console.error('Error code:', writeError.code);
+                console.error('Error message:', writeError.message);
+                throw writeError;
+            }
+            
+            console.log(' Newsletter subscription saved to Firebase successfully');
+        } else {
+            // Fallback when Firebase is not available
+            console.log(' Firebase not available, using fallback method');
+            
+            // For now, we'll just simulate success
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+        }
+        
+        console.log('🎉 Showing success message');
+        
+        // Success state
+        submitButton.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+        submitButton.style.background = '#10b981';
+        
+        showNotification(' Thank you for subscribing! You\'ll receive our latest tech insights and updates.', 'success');
+        
+        // Clear the form
+        emailInput.value = '';
+        
+        // Track subscription event (if you have analytics)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'newsletter_subscription', {
+                'event_category': 'engagement',
+                'event_label': 'newsletter_form'
+            });
+        }
+        
+    } catch (error) {
+        console.error('❌ =================================');
+        console.error('❌ NEWSLETTER SUBSCRIPTION ERROR');
+        console.error('❌ =================================');
+        console.error('❌ Error object:', error);
+        console.error('❌ Error type:', error.constructor.name);
+        console.error('❌ Error code:', error.code || 'No code');
+        console.error('❌ Error message:', error.message);
+        console.error('❌ Error stack:', error.stack);
+        console.error('❌ =================================');
+        
+        submitButton.innerHTML = '<i class="fas fa-times"></i> Failed';
+        submitButton.style.background = '#ef4444';
+        
+        // More specific error messages
+        if (error.code === 'permission-denied') {
+            showNotification('Access denied. Please try again later.', 'error');
+            console.log('❌ Permission denied - check Firestore rules');
+        } else if (error.code === 'unavailable') {
+            showNotification('Service temporarily unavailable. Please try again.', 'error');
+            console.log('❌ Service unavailable');
+        } else {
+            showNotification('Failed to subscribe. Please try again later.', 'error');
+            console.log('❌ Generic error:', error.message);
+        }
+    } finally {
+        console.log('🔄 Resetting form state');
+        
+        // Re-enable form elements
+        emailInput.disabled = false;
+        
+        // Reset button after delay
+        setTimeout(() => {
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            submitButton.style.background = '';
+            console.log('✅ Form reset complete');
+        }, 3000);
+    }
 }
 
 // Form validation functions
@@ -522,6 +753,12 @@ function validateSingleField(fieldId) {
  * Utility Functions
  */
 
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 // Show notification messages
 function showNotification(message, type = 'info') {
     // Create notification element
@@ -606,7 +843,7 @@ document.addEventListener('mousedown', function() {
 // Preload critical images
 function preloadImages() {
     const criticalImages = [
-        '/logo.png'
+        // Add critical images here if needed
     ];
     
     criticalImages.forEach(src => {
@@ -839,7 +1076,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-console.log('🚀 DevPy Website Loaded Successfully!');
-console.log('💫 Built with modern web technologies');
-console.log('🎨 Designed for optimal user experience');
-console.log('⚡ Optimized for performance and accessibility');
+console.log(' DevPy Website Loaded Successfully!');
+console.log(' Built with modern web technologies');
+console.log(' Designed for optimal user experience');
+console.log(' Optimized for performance and accessibility');

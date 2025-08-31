@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional API development services - RESTful APIs, GraphQL, microservices, API documentation, and integration solutions for modern applications.">
+    <meta name="keywords" content="API development, RESTful APIs, GraphQL, microservices, API integration, DevPy">
+    <meta name="author" content="DevPy">
+    <meta name="robots" content="index, follow">
+
+    <title>API Development Services - DevPy | RESTful & GraphQL APIs</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.devpy.tech/api-development.html" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="logo.png" as="image" type="image/png">
+
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- AOS Animation Library -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="eager">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" aria-expanded="false">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content" data-aos="fade-up">
+                <div class="service-icon-large">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h1>API Development Services</h1>
+                <p class="hero-subtitle">
+                    Build robust, scalable, and secure APIs that power modern applications. From RESTful services to GraphQL endpoints, 
+                    we create APIs that drive seamless integration and exceptional user experiences.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">APIs Built</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50ms</span>
+                        <span class="stat-label">Avg Response Time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="service-overview">
+                <div class="overview-content" data-aos="fade-right">
+                    <h2>Professional API Development</h2>
+                    <p>
+                        At DevPy, we specialize in creating high-performance APIs that serve as the backbone of modern applications. 
+                        Our APIs are designed with scalability, security, and developer experience in mind, ensuring seamless 
+                        integration across platforms and services.
+                    </p>
+                    <p>
+                        Whether you need a simple REST API for your mobile app or a complex microservices architecture, 
+                        we deliver solutions that are well-documented, thoroughly tested, and built to handle enterprise-scale traffic.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>RESTful & GraphQL APIs</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Comprehensive Documentation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time & WebSocket Support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Enterprise Security Standards</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Services -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our API Development Services</h2>
+                <p>Comprehensive API solutions for modern application architectures</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>RESTful API Development</h3>
+                    <p>Build scalable REST APIs following industry best practices with proper HTTP methods, status codes, and resource modeling.</p>
+                    <ul class="ai-features">
+                        <li>RESTful design principles</li>
+                        <li>JSON/XML data formats</li>
+                        <li>Proper HTTP status codes</li>
+                        <li>Rate limiting & throttling</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>GraphQL APIs</h3>
+                    <p>Flexible GraphQL APIs that allow clients to request exactly the data they need, reducing over-fetching and improving performance.</p>
+                    <ul class="ai-features">
+                        <li>Single endpoint flexibility</li>
+                        <li>Type-safe schema definition</li>
+                        <li>Real-time subscriptions</li>
+                        <li>Introspection capabilities</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Microservices Architecture</h3>
+                    <p>Design and implement microservices-based architectures with proper service discovery, load balancing, and fault tolerance.</p>
+                    <ul class="ai-features">
+                        <li>Service decomposition</li>
+                        <li>API gateway implementation</li>
+                        <li>Inter-service communication</li>
+                        <li>Circuit breaker patterns</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-time APIs</h3>
+                    <p>WebSocket and Server-Sent Events implementation for real-time data streaming and live updates in your applications.</p>
+                    <ul class="ai-features">
+                        <li>WebSocket connections</li>
+                        <li>Server-sent events</li>
+                        <li>Real-time notifications</li>
+                        <li>Live data synchronization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>API Documentation</h3>
+                    <p>Comprehensive API documentation using OpenAPI/Swagger specifications with interactive testing capabilities.</p>
+                    <ul class="ai-features">
+                        <li>OpenAPI/Swagger specs</li>
+                        <li>Interactive documentation</li>
+                        <li>Code examples</li>
+                        <li>Postman collections</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Third-party Integrations</h3>
+                    <p>Seamless integration with external APIs and services including payment gateways, social platforms, and business tools.</p>
+                    <ul class="ai-features">
+                        <li>Payment gateway integration</li>
+                        <li>Social media APIs</li>
+                        <li>CRM & ERP connections</li>
+                        <li>Custom API wrappers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Technologies We Use</h2>
+                <p>Modern tools and frameworks for building robust APIs</p>
+            </div>
+            
+            <div class="tech-badges" data-aos="fade-up" data-aos-delay="200">
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">GraphQL</span>
+                <span class="tech-badge">REST APIs</span>
+                <span class="tech-badge">WebSockets</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">JWT/OAuth</span>
+                <span class="tech-badge">Postman</span>
+                <span class="tech-badge">Redis</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">PostgreSQL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>API Development Success Stories</h2>
+                <p>Real-world examples of our API solutions in action</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Banking API</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Built a secure banking API handling 1M+ daily transactions with real-time fraud detection and multi-factor authentication.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">1M+</span>
+                                <span class="metric-label">Daily Transactions</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">99.99%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3>E-commerce GraphQL API</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Developed a flexible GraphQL API for a multi-vendor marketplace, reducing data transfer by 60% and improving mobile performance.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">60%</span>
+                                <span class="metric-label">Data Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3x</span>
+                                <span class="metric-label">Faster Loading</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">GraphQL</span>
+                            <span class="tech-tag">Apollo</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Real-time Chat API</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Created a WebSocket-based real-time messaging API supporting 50K+ concurrent users with message encryption and file sharing.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50K+</span>
+                                <span class="metric-label">Concurrent Users</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">10ms</span>
+                                <span class="metric-label">Message Latency</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">WebSocket</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Build Your API?</h2>
+                <p>Let's create robust, scalable APIs that power your applications and drive your business forward. Our expert team is ready to turn your ideas into reality.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Start Your Project
+                    </a>
+                    <a href="tel:+923097609121" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Discuss Requirements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="lazy"></div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with innovative development.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/devpy_developers" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="web-development.html">Web Development</a>
+                        <a href="ai-projects.html">AI Based Projects</a>
+                        <a href="cloud-solutions.html">Cloud Solutions</a>
+                        <a href="api-development.html">API Development</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:contact@devpy.tech"><i class="fas fa-envelope"></i> contact@devpy.tech</a>
+                        <a href="tel:+923097609121"><i class="fas fa-phone"></i> +92 309 7609121</a>
+                    </div>
+                    <p style="margin-top: 1rem;">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. <a href="legal.html">All rights reserved.</a> | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>

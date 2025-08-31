@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional DevOps & Automation services - CI/CD pipelines, infrastructure automation, cloud deployment, and monitoring solutions.">
+    <meta name="keywords" content="DevOps, automation, CI/CD, infrastructure, deployment, monitoring, DevPy">
+    <meta name="author" content="DevPy">
+    <meta name="robots" content="index, follow">
+
+    <title>DevOps & Automation Services - DevPy | CI/CD & Infrastructure</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.devpy.tech/devops-automation.html" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="logo.png" as="image" type="image/png">
+
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- AOS Animation Library -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="eager">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" aria-expanded="false">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content" data-aos="fade-up">
+                <div class="service-icon-large">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h1>DevOps & Automation Services</h1>
+                <p class="hero-subtitle">
+                    Streamline your development lifecycle with advanced DevOps practices and automation solutions. 
+                    From CI/CD pipelines to infrastructure as code, we help you deploy faster, scale better, and maintain reliability.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">Faster Deployments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">System Uptime</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Pipelines Built</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="service-overview">
+                <div class="overview-content" data-aos="fade-right">
+                    <h2>Professional DevOps Solutions</h2>
+                    <p>
+                        At DevPy, we bridge the gap between development and operations teams with cutting-edge DevOps practices. 
+                        Our automation solutions reduce manual errors, accelerate delivery cycles, and ensure consistent, 
+                        reliable deployments across all environments.
+                    </p>
+                    <p>
+                        Whether you're looking to implement CI/CD pipelines, automate infrastructure management, or optimize 
+                        your monitoring and alerting systems, we provide end-to-end DevOps solutions that scale with your business.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>CI/CD Pipeline Development</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Infrastructure as Code (IaC)</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Container Orchestration</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Monitoring & Alerting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+    </section>
+
+    <!-- DevOps Services -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our DevOps & Automation Services</h2>
+                <p>Complete DevOps solutions for modern software development lifecycle</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>CI/CD Pipeline Development</h3>
+                    <p>Build robust continuous integration and deployment pipelines that automate testing, building, and deployment processes.</p>
+                    <ul class="ai-features">
+                        <li>Automated build processes</li>
+                        <li>Continuous testing integration</li>
+                        <li>Deployment automation</li>
+                        <li>Rollback strategies</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Infrastructure as Code</h3>
+                    <p>Manage and provision infrastructure through code, ensuring consistency, version control, and automated deployment.</p>
+                    <ul class="ai-features">
+                        <li>Terraform & CloudFormation</li>
+                        <li>Infrastructure versioning</li>
+                        <li>Automated provisioning</li>
+                        <li>Environment consistency</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <h3>Containerization & Orchestration</h3>
+                    <p>Implement Docker containers and Kubernetes orchestration for scalable, portable, and efficient application deployment.</p>
+                    <ul class="ai-features">
+                        <li>Docker containerization</li>
+                        <li>Kubernetes orchestration</li>
+                        <li>Service mesh implementation</li>
+                        <li>Auto-scaling configuration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Monitoring & Observability</h3>
+                    <p>Comprehensive monitoring solutions with real-time alerts, performance metrics, and detailed logging systems.</p>
+                    <ul class="ai-features">
+                        <li>Application performance monitoring</li>
+                        <li>Infrastructure monitoring</li>
+                        <li>Log aggregation & analysis</li>
+                        <li>Custom alerting rules</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Migration & Optimization</h3>
+                    <p>Seamless migration to cloud platforms with optimization strategies for cost-efficiency and performance.</p>
+                    <ul class="ai-features">
+                        <li>Cloud strategy planning</li>
+                        <li>Migration execution</li>
+                        <li>Cost optimization</li>
+                        <li>Performance tuning</li>
+                    </ul>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Compliance</h3>
+                    <p>Implement security best practices and compliance frameworks throughout the DevOps pipeline and infrastructure.</p>
+                    <ul class="ai-features">
+                        <li>Security scanning integration</li>
+                        <li>Compliance automation</li>
+                        <li>Secret management</li>
+                        <li>Access control & auditing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DevOps Technologies -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Technologies We Use</h2>
+                <p>Modern tools and platforms for efficient DevOps implementation</p>
+            </div>
+            
+            <div class="tech-badges" data-aos="fade-up" data-aos-delay="200">
+                <span class="tech-badge">Jenkins</span>
+                <span class="tech-badge">GitHub Actions</span>
+                <span class="tech-badge">GitLab CI</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Kubernetes</span>
+                <span class="tech-badge">AWS</span>
+                <span class="tech-badge">Azure</span>
+                <span class="tech-badge">Google Cloud</span>
+                <span class="tech-badge">Terraform</span>
+                <span class="tech-badge">Ansible</span>
+                <span class="tech-badge">Prometheus</span>
+                <span class="tech-badge">Grafana</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>DevOps Success Stories</h2>
+                <p>Real-world examples of our DevOps transformations</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>FinTech Platform Automation</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Implemented comprehensive CI/CD pipeline for a financial platform, reducing deployment time from hours to minutes with zero-downtime deployments.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Faster Deployments</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">0</span>
+                                <span class="metric-label">Downtime</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce Infrastructure Scaling</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Automated infrastructure scaling for an e-commerce platform, handling Black Friday traffic spikes with automatic resource allocation.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10x</span>
+                                <span class="metric-label">Traffic Handling</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">60%</span>
+                                <span class="metric-label">Cost Reduction</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Prometheus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Healthcare System Migration</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Successfully migrated a legacy healthcare system to cloud with enhanced security, compliance monitoring, and automated backup systems.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">Compliance</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">99.99%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">ELK Stack</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Transform Your DevOps?</h2>
+                <p>Let's automate your development lifecycle and scale your operations with cutting-edge DevOps practices. Our expert team is ready to accelerate your delivery and improve your system reliability.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Start Your Project
+                    </a>
+                    <a href="tel:+923097609121" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Discuss Requirements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="lazy"></div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with innovative development.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/devpy_developers" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="web-development.html">Web Development</a>
+                        <a href="ai-projects.html">AI Based Projects</a>
+                        <a href="cloud-solutions.html">Cloud Solutions</a>
+                        <a href="devops-automation.html">DevOps & Automation</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:contact@devpy.tech"><i class="fas fa-envelope"></i> contact@devpy.tech</a>
+                        <a href="tel:+923097609121"><i class="fas fa-phone"></i> +92 309 7609121</a>
+                    </div>
+                    <p style="margin-top: 1rem;">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. <a href="legal.html">All rights reserved.</a> | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>

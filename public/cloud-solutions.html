@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cloud infrastructure and deployment services - AWS, Azure, GCP solutions, cloud migration, DevOps, and scalable cloud architecture for modern businesses.">
+    <meta name="keywords" content="cloud solutions, AWS, Azure, GCP, cloud migration, DevOps, cloud infrastructure, DevPy">
+    <meta name="author" content="DevPy">
+    <meta name="robots" content="index, follow">
+
+    <title>Cloud Solutions - DevPy | AWS, Azure & GCP Infrastructure Services</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.devpy.tech/cloud-solutions.html" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="logo.png" as="image" type="image/png">
+
+    <!-- Google Fonts - Outfit for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- AOS Animation Library -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="eager">
+                </div>
+                <span class="logo-text">DevPy</span>
+            </a>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile navigation menu" aria-expanded="false">
+                <i class="fas fa-bars" id="mobileMenuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-hero-content" data-aos="fade-up">
+                <div class="service-icon-large">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h1>Cloud Solutions</h1>
+                <p class="hero-subtitle">
+                    Scale your business with robust, secure, and cost-effective cloud infrastructure solutions. 
+                    We help you migrate, deploy, and optimize your applications on leading cloud platforms.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Cloud Deployments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Uptime Achieved</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Cost Savings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="service-overview">
+                <div class="overview-content" data-aos="fade-right">
+                    <h2>Enterprise-Grade Cloud Infrastructure</h2>
+                    <p>
+                        DevPy specializes in designing, implementing, and managing cloud infrastructure that grows with your business. 
+                        Our cloud solutions provide the scalability, reliability, and security your applications need to thrive 
+                        in today's digital landscape.
+                    </p>
+                    <p>
+                        From simple website hosting to complex multi-tier applications, we leverage the power of AWS, Azure, 
+                        and Google Cloud Platform to deliver solutions that are both powerful and cost-effective.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multi-Cloud Architecture</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Auto-Scaling Infrastructure</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Monitoring & Support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Security Best Practices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Services -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Cloud Services</h2>
+                <p>Comprehensive cloud solutions tailored to your business requirements</p>
+            </div>
+            
+            <div class="cloud-services-grid">
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Cloud Migration</h3>
+                    <p>Seamlessly migrate your existing applications and data to the cloud with minimal downtime and maximum efficiency.</p>
+                    <ul class="cloud-features">
+                        <li>Migration strategy & planning</li>
+                        <li>Application assessment</li>
+                        <li>Data migration services</li>
+                        <li>Post-migration optimization</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Infrastructure Design</h3>
+                    <p>Design and implement scalable, secure, and cost-effective cloud infrastructure tailored to your specific needs.</p>
+                    <ul class="cloud-features">
+                        <li>Architecture planning</li>
+                        <li>Network design & security</li>
+                        <li>Auto-scaling configuration</li>
+                        <li>Disaster recovery setup</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>DevOps & CI/CD</h3>
+                    <p>Streamline your development and deployment processes with automated CI/CD pipelines and DevOps best practices.</p>
+                    <ul class="cloud-features">
+                        <li>Automated deployment pipelines</li>
+                        <li>Infrastructure as Code</li>
+                        <li>Container orchestration</li>
+                        <li>Monitoring & alerting</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Compliance</h3>
+                    <p>Ensure your cloud infrastructure meets the highest security standards and compliance requirements for your industry.</p>
+                    <ul class="cloud-features">
+                        <li>Security assessment & hardening</li>
+                        <li>Identity & access management</li>
+                        <li>Compliance frameworks</li>
+                        <li>Vulnerability management</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Monitoring & Optimization</h3>
+                    <p>Continuous monitoring and optimization of your cloud resources to ensure optimal performance and cost efficiency.</p>
+                    <ul class="cloud-features">
+                        <li>Performance monitoring</li>
+                        <li>Cost optimization</li>
+                        <li>Resource utilization analysis</li>
+                        <li>Automated scaling policies</li>
+                    </ul>
+                </div>
+
+                <div class="cloud-service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="cloud-service-icon">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h3>Managed Services</h3>
+                    <p>Let our experts manage your cloud infrastructure while you focus on your core business operations and growth.</p>
+                    <ul class="cloud-features">
+                        <li>24/7 infrastructure management</li>
+                        <li>Proactive monitoring</li>
+                        <li>Regular maintenance & updates</li>
+                        <li>Technical support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud Platforms -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Cloud Platforms We Work With</h2>
+                <p>Expertise across all major cloud providers and technologies</p>
+            </div>
+            
+            <div class="cloud-platforms-grid">
+                <div class="platform-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="platform-logo">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3>Amazon Web Services</h3>
+                    <p>Comprehensive AWS solutions including EC2, S3, RDS, Lambda, and more for scalable cloud infrastructure.</p>
+                    <div class="platform-services">
+                        <span class="service-tag">EC2</span>
+                        <span class="service-tag">S3</span>
+                        <span class="service-tag">RDS</span>
+                        <span class="service-tag">Lambda</span>
+                        <span class="service-tag">CloudFormation</span>
+                        <span class="service-tag">EKS</span>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="platform-logo">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3>Microsoft Azure</h3>
+                    <p>Full-stack Azure solutions including Virtual Machines, App Service, SQL Database, and Azure Functions.</p>
+                    <div class="platform-services">
+                        <span class="service-tag">Virtual Machines</span>
+                        <span class="service-tag">App Service</span>
+                        <span class="service-tag">SQL Database</span>
+                        <span class="service-tag">Functions</span>
+                        <span class="service-tag">AKS</span>
+                        <span class="service-tag">DevOps</span>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="platform-logo">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google Cloud Platform</h3>
+                    <p>Advanced GCP solutions including Compute Engine, Cloud Storage, BigQuery, and Cloud Functions.</p>
+                    <div class="platform-services">
+                        <span class="service-tag">Compute Engine</span>
+                        <span class="service-tag">Cloud Storage</span>
+                        <span class="service-tag">BigQuery</span>
+                        <span class="service-tag">Cloud Functions</span>
+                        <span class="service-tag">GKE</span>
+                        <span class="service-tag">AI/ML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="section bg-dark">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Technologies We Use</h2>
+                <p>Modern tools and technologies for efficient cloud operations</p>
+            </div>
+            
+            <div class="tech-badges" data-aos="fade-up" data-aos-delay="200">
+                <span class="tech-badge">AWS</span>
+                <span class="tech-badge">Azure</span>
+                <span class="tech-badge">Google Cloud</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Kubernetes</span>
+                <span class="tech-badge">Terraform</span>
+                <span class="tech-badge">Ansible</span>
+                <span class="tech-badge">Jenkins</span>
+                <span class="tech-badge">GitLab CI</span>
+                <span class="tech-badge">Prometheus</span>
+                <span class="tech-badge">Grafana</span>
+                <span class="tech-badge">CloudFormation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Cloud Success Stories</h2>
+                <p>Real results from our cloud transformation projects</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>E-commerce Platform Migration</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Successfully migrated a high-traffic e-commerce platform to AWS, resulting in improved performance and reduced operational costs.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50%</span>
+                                <span class="metric-label">Cost Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">99.9%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">EC2</span>
+                            <span class="tech-tag">RDS</span>
+                            <span class="tech-tag">CloudFront</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Healthcare Data Platform</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Built a secure, HIPAA-compliant data platform on Azure for a healthcare provider, enabling real-time analytics and reporting.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">75%</span>
+                                <span class="metric-label">Faster Analytics</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">HIPAA Compliant</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">SQL Database</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Key Vault</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-header">
+                        <div class="case-study-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>EdTech Platform Scaling</h3>
+                    </div>
+                    <div class="case-study-content">
+                        <p>Implemented auto-scaling infrastructure on GCP for an education platform, handling 10x traffic increase during peak periods.</p>
+                        <div class="case-study-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10x</span>
+                                <span class="metric-label">Traffic Handling</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Zero</span>
+                                <span class="metric-label">Downtime</span>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">GCP</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Load Balancer</span>
+                            <span class="tech-tag">BigQuery</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Scale with the Cloud?</h2>
+                <p>Transform your infrastructure with our expert cloud solutions. Let's build a scalable, secure, and cost-effective cloud platform for your business.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Start Migration
+                    </a>
+                    <a href="tel:+923097609121" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Consult Expert
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="70" height="70" loading="lazy"></div>
+                        <span class="logo-text">DevPy</span>
+                    </div>
+                    <p>Transforming ideas into powerful digital experiences with innovative development.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/devpy-technologies" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/DevPyTech" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61559389452756" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/devpy_developers" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="services.html">Services</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="web-development.html">Web Development</a>
+                        <a href="ai-projects.html">AI Based Projects</a>
+                        <a href="cloud-solutions.html">Cloud Solutions</a>
+                        <a href="services.html">DevOps</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="footer-links">
+                        <a href="mailto:contact@devpy.tech"><i class="fas fa-envelope"></i> contact@devpy.tech</a>
+                        <a href="tel:+923097609121"><i class="fas fa-phone"></i> +92 309 7609121</a>
+                    </div>
+                    <p style="margin-top: 1rem;">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DevPy. <a href="legal.html">All rights reserved.</a> | DevPy Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top of page">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>
