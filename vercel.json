@@ -13,15 +13,15 @@
     },
     {
       "src": "/blog",
-      "dest": "/public/blogs/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/public/blogs/"
     },
     {
       "src": "/",
       "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ],
   "headers": [
