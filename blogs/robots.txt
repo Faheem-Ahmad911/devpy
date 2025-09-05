@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://blog.devpy.tech/sitemap.xml
+
+# Allow all crawlers to access blog content
+Allow: /categories/
+Allow: /posts/
+Allow: /images/
+Allow: /styles/
+Allow: /scripts/
+
+# Block access to admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

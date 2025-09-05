@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin Panel - DevPy</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../public/favicon-32x32.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal active">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="60" height="60">
+                <h2>Admin Login</h2>
+                <p>Enter your credentials to access the admin panel</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="login-error" id="loginError" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Invalid credentials. Please try again.</span>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </form>
+            <div class="login-footer">
+                <a href="../index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Blog
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Admin Content (Hidden by default) -->
+    <div id="adminContent" class="admin-content-wrapper" style="display: none;">
+    
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-container">
+            <div class="admin-logo">
+                <img src="https://www.devpy.tech/logo.png" alt="DevPy Logo" width="40" height="40">
+                <h1>Blog Admin Panel</h1>
+            </div>
+            <nav class="admin-nav">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Blog
+                </a>
+                <div class="admin-user">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="adminUsername">Admin</span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admin Main Content -->
+    <main class="admin-main">
+        <div class="admin-container">
+            <!-- Dashboard Stats -->
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalPosts">0</h3>
+                        <p>Total Posts</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalViews">0</h3>
+                        <p>Total Views</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalCategories">5</h3>
+                        <p>Categories</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="postsThisMonth">0</h3>
+                        <p>This Month</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Actions -->
+            <section class="admin-actions">
+                <button class="action-btn primary" id="addNewPost">
+                    <i class="fas fa-plus"></i>
+                    Add New Post
+                </button>
+                <button class="action-btn secondary" id="managePosts">
+                    <i class="fas fa-list"></i>
+                    Manage Posts
+                </button>
+                <button class="action-btn secondary" id="manageCategories">
+                    <i class="fas fa-tags"></i>
+                    Manage Categories
+                </button>
+                <button class="action-btn danger" id="clearAllPosts">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear All Posts
+                </button>
+            </section>
+
+            <!-- Posts Management Table -->
+            <section class="posts-management">
+                <div class="section-header">
+                    <h2>Manage Blog Posts</h2>
+                    <div class="search-filter">
+                        <input type="text" id="adminSearch" placeholder="Search posts..." class="admin-search">
+                        <select id="adminCategoryFilter" class="admin-filter">
+                            <option value="all">All Categories</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="ai-ml">AI & Machine Learning</option>
+                            <option value="cloud-devops">Cloud & DevOps</option>
+                            <option value="database">Database</option>
+                            <option value="case-study">Case Studies</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="posts-table-container">
+                    <table class="posts-table" id="postsTable">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Author</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="postsTableBody">
+                            <!-- Posts will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add/Edit Post Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Post</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="post-form" id="postForm">
+                <div class="form-group">
+                    <label for="postTitle">Post Title *</label>
+                    <input type="text" id="postTitle" name="title" required maxlength="200">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postCategory">Category *</label>
+                        <select id="postCategory" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="ai-ml">AI & Machine Learning</option>
+                            <option value="cloud-devops">Cloud & DevOps</option>
+                            <option value="database">Database</option>
+                            <option value="case-study">Case Studies</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postAuthor">Author *</label>
+                        <input type="text" id="postAuthor" name="author" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="postExcerpt">Post Excerpt *</label>
+                    <textarea id="postExcerpt" name="excerpt" required maxlength="300" rows="3"></textarea>
+                    <small>Brief description of the post (max 300 characters)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="postImage">Featured Image *</label>
+                    <div class="image-upload">
+                        <input type="file" id="postImage" name="image" accept="image/*" required>
+                        <div class="image-preview" id="imagePreview">
+                            <i class="fas fa-image"></i>
+                            <p>Upload featured image</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="postContent">Post Content *</label>
+                    <div class="editor-toolbar">
+                        <button type="button" class="editor-btn" data-command="bold">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="italic">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="underline">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="insertUnorderedList">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="insertOrderedList">
+                            <i class="fas fa-list-ol"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="createLink">
+                            <i class="fas fa-link"></i>
+                        </button>
+                        <button type="button" class="editor-btn" data-command="insertImage">
+                            <i class="fas fa-image"></i>
+                        </button>
+                    </div>
+                    <div class="content-editor" id="postContent" contenteditable="true" data-placeholder="Write your blog post content here..."></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postTags">Tags</label>
+                        <input type="text" id="postTags" name="tags" placeholder="Enter tags separated by commas">
+                        <small>e.g. javascript, react, tutorial</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="postStatus">Status *</label>
+                        <select id="postStatus" name="status" required>
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelPost">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="savePost">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancelConfirm">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- End Admin Content Wrapper -->
+
+    <!-- Admin JavaScript -->
+    <script src="admin.js"></script>
+</body>
+</html>
