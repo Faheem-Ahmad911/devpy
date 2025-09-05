@@ -4,20 +4,16 @@
     {
       "src": "public/**/*",
       "use": "@vercel/static"
-    },
-    {
-      "src": "blogs/**/*",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/blog/(.*)",
-      "dest": "/blogs/$1"
+      "src": "/blogs/(.*)",
+      "dest": "/public/blogs/$1"
     },
     {
       "src": "/blog",
-      "dest": "/blogs/index.html"
+      "dest": "/public/blogs/index.html"
     },
     {
       "src": "/(.*)",
@@ -47,7 +43,7 @@
       ]
     },
     {
-      "source": "/blogs/(.*)",
+      "source": "/public/blogs/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

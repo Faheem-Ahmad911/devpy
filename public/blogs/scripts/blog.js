@@ -734,14 +734,8 @@ async function loadBlogPosts() {
             }
         }
         
-        // If no admin posts or very few, add sample posts
-        if (allPosts.length === 0) {
-            console.log('No admin posts found, adding sample posts...');
-            const samplePosts = await getSamplePosts();
-            allPosts = samplePosts;
-        } else {
-            console.log('Using admin posts:', allPosts.length);
-        }
+        // Only use admin posts - no sample/default posts
+        console.log('Using only admin posts:', allPosts.length);
         
         // Apply filters
         let filteredPosts = allPosts;
@@ -782,7 +776,25 @@ async function loadBlogPosts() {
         if (loadingSpinner) loadingSpinner.style.display = 'none';
         
         if (posts.length === 0) {
-            if (noPostsMessage) noPostsMessage.style.display = 'block';
+            if (noPostsMessage) {
+                noPostsMessage.style.display = 'block';
+                const h3 = noPostsMessage.querySelector('h3');
+                const p = noPostsMessage.querySelector('p');
+                const icon = noPostsMessage.querySelector('i');
+                
+                // Check if we have any admin posts at all
+                if (allPosts.length === 0) {
+                    // No admin posts exist
+                    if (icon) icon.className = 'fas fa-edit';
+                    if (h3) h3.textContent = 'No blog posts available';
+                    if (p) p.textContent = 'No blog posts have been published yet. Check back later for new content!';
+                } else {
+                    // Admin posts exist but filtered out
+                    if (icon) icon.className = 'fas fa-search';
+                    if (h3) h3.textContent = 'No posts found';
+                    if (p) p.textContent = 'Try adjusting your search criteria or filters.';
+                }
+            }
             gridContainer.innerHTML = '';
             return;
         }
@@ -805,65 +817,6 @@ async function loadBlogPosts() {
             noPostsMessage.querySelector('p').textContent = 'Please try again later.';
         }
     }
-}
-
-// Sample posts for when no admin posts are available
-async function getSamplePosts() {
-    console.log('Creating sample posts...');
-    
-    const samplePosts = [
-        {
-            id: 'sample-1',
-            title: "Welcome to DevPy Blog",
-            category: "web-development",
-            author: {
-                name: "DevPy Team"
-            },
-            excerpt: "Welcome to our blog! Here you'll find insights, tutorials, and industry knowledge about web development, AI, cloud solutions, and more.",
-            content: "<p>Welcome to the DevPy Blog! This is your hub for technical insights, development tutorials, and industry best practices.</p><p>Our team shares knowledge about modern web development, cloud solutions, AI/ML projects, and innovative technologies that drive business success.</p>",
-            tags: ["welcome", "devpy", "blog"],
-            status: "published",
-            publishDate: new Date().toISOString(),
-            readTime: 2,
-            views: 0,
-            featuredImage: "./images/posts/placeholder.jpg"
-        },
-        {
-            id: 'sample-2',
-            title: "Modern Web Development Best Practices",
-            category: "web-development",
-            author: {
-                name: "DevPy Team"
-            },
-            excerpt: "Discover the latest best practices in modern web development, from responsive design to performance optimization.",
-            content: "<p>Modern web development requires a comprehensive approach that balances user experience, performance, and maintainability.</p><p>Key areas include responsive design, performance optimization, accessibility, and modern JavaScript frameworks.</p>",
-            tags: ["web-development", "best-practices", "javascript"],
-            status: "published",
-            publishDate: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-            readTime: 5,
-            views: 12,
-            featuredImage: "./images/posts/placeholder.jpg"
-        },
-        {
-            id: 'sample-3',
-            title: "Cloud Solutions for Modern Businesses",
-            category: "cloud-devops",
-            author: {
-                name: "DevPy Team"
-            },
-            excerpt: "Learn how cloud solutions can transform your business operations and drive growth in the digital age.",
-            content: "<p>Cloud computing has revolutionized how businesses operate, offering scalability, flexibility, and cost-effectiveness.</p><p>From infrastructure as a service to serverless computing, explore the options available for your business.</p>",
-            tags: ["cloud", "business", "digital-transformation"],
-            status: "published",
-            publishDate: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
-            readTime: 4,
-            views: 8,
-            featuredImage: "./images/posts/placeholder.jpg"
-        }
-    ];
-
-    console.log('Sample posts created:', samplePosts.length);
-    return samplePosts;
 }
 
 // Render Blog Posts
