@@ -24,6 +24,53 @@ class BlogAdmin {
         return imagePath;
     }
 
+    // Create new blog post using GitHub API
+    async createPost(postData) {
+        try {
+            // Show loading state
+            const saveBtn = document.getElementById('savePost');
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Post...';
+            saveBtn.disabled = true;
+
+            const response = await fetch(`${this.apiBaseUrl}/create-post`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Failed to create post');
+            }
+
+            // Show success message
+            this.showNotification('Post created successfully! It will be live in 1-2 minutes.', 'success');
+            
+            // Reset form and close modal
+            this.resetPostForm();
+            this.closePostModal();
+            
+            // Refresh posts list
+            await this.loadPosts();
+
+            return result;
+
+        } catch (error) {
+            console.error('Error creating post:', error);
+            this.showNotification(`Error creating post: ${error.message}`, 'error');
+            throw error;
+        } finally {
+            // Restore button state
+            const saveBtn = document.getElementById('savePost');
+            saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Post';
+            saveBtn.disabled = false;
+        }
+    }
+
     // API helper methods
     async apiCall(endpoint, options = {}) {
         try {
@@ -233,16 +280,20 @@ class BlogAdmin {
 
     async loadPosts() {
         try {
-            const response = await this.apiCall('/admin/posts');
-            if (response.success) {
-                this.posts = response.posts;
+            // Load posts from the index.json file
+            const response = await fetch('../posts/index.json?' + Date.now()); // Add cache busting
+            if (response.ok) {
+                const data = await response.json();
+                this.posts = data.posts || [];
                 this.loadDashboardStats();
                 this.renderPostsTable();
+            } else {
+                throw new Error('Failed to load posts index');
             }
         } catch (error) {
             console.error('Error loading posts:', error);
             this.posts = [];
-            this.showNotification('Failed to load posts', 'error');
+            this.showMessage('Failed to load posts. Make sure the posts index file exists.', 'error');
         }
     }
 
@@ -464,63 +515,66 @@ class BlogAdmin {
         const originalText = submitBtn.innerHTML;
         
         // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Post...';
         submitBtn.disabled = true;
         
         try {
-            // Prepare form data for API
-            const apiFormData = new FormData();
-            apiFormData.append('title', formData.get('title'));
-            apiFormData.append('category', formData.get('category'));
-            apiFormData.append('author', formData.get('author'));
-            apiFormData.append('excerpt', formData.get('excerpt'));
-            apiFormData.append('content', document.getElementById('postContent').innerHTML);
-            apiFormData.append('tags', formData.get('tags') || '');
-            apiFormData.append('status', formData.get('status'));
-            
-            // Calculate read time
-            const contentLength = document.getElementById('postContent').innerText.length;
-            const readTime = Math.ceil(contentLength / 200) || 1;
-            apiFormData.append('readTime', `${readTime} min read`);
-            
-            // Handle image upload
+            // Get form data
+            const postData = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                author: formData.get('author'),
+                excerpt: formData.get('excerpt'),
+                content: document.getElementById('postContent').innerHTML,
+                tags: formData.get('tags') || '',
+                status: formData.get('status') || 'published'
+            };
+
+            // Handle image - for now, use placeholder
             const imageFile = formData.get('image');
             if (imageFile && imageFile.size > 0) {
-                apiFormData.append('image', imageFile);
-            }
-            
-            let response;
-            if (this.currentEditingPost) {
-                // Update existing post
-                response = await fetch(`${this.apiBaseUrl}/admin/posts/${this.currentEditingPost.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${this.authToken}`
-                    },
-                    body: apiFormData
-                });
+                // For simplicity, we'll use a placeholder image
+                // In a full implementation, you'd upload the image to GitHub or a CDN
+                postData.image = '../images/posts/placeholder.jpg';
             } else {
-                // Create new post
-                response = await fetch(`${this.apiBaseUrl}/admin/posts`, {
+                postData.image = '../images/posts/placeholder.jpg';
+            }
+
+            // Validate required fields
+            if (!postData.title || !postData.category || !postData.author || !postData.excerpt || !postData.content) {
+                throw new Error('Please fill in all required fields');
+            }
+
+            if (this.currentEditingPost) {
+                // For now, editing is not supported with GitHub API
+                // You would need additional API endpoints for updates
+                throw new Error('Editing posts is not yet supported. Please create a new post.');
+            } else {
+                // Create new post using GitHub API
+                const response = await fetch(`${this.apiBaseUrl}/create-post`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${this.authToken}`
+                        'Content-Type': 'application/json'
                     },
-                    body: apiFormData
+                    body: JSON.stringify(postData)
                 });
+
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to create post');
+                }
+
+                // Show success message
+                this.showMessage('Post created successfully! It will be live in 1-2 minutes after GitHub deployment.', 'success');
+                
+                // Wait a moment and refresh posts
+                setTimeout(async () => {
+                    await this.loadPosts();
+                    this.closePostModal();
+                }, 2000);
             }
             
-            const result = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(result.message || 'Failed to save post');
-            }
-            
-            if (result.success) {
-                this.showMessage(result.message || 'Post saved successfully!', 'success');
-                await this.loadPosts(); // Refresh posts
-                this.closePostModal();
-            }
         } catch (error) {
             console.error('Error saving post:', error);
             this.showMessage(error.message || 'Failed to save post', 'error');
