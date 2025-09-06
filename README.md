@@ -1,9 +1,10 @@
-# DevPy - Premium Tech Solutions Website
+# DevPy - Premium Tech Solutions Website with Blog System
 
-A modern, responsive website for DevPy showcasing premium technology solutions and development services.
+A modern, responsive website for DevPy showcasing premium technology solutions and development services, featuring a complete blog management system.
 
 ## 🌟 Features
 
+### Website Features:
 - **Modern Design**: Glassmorphism effects, smooth animations, and contemporary UI
 - **Responsive**: Fully responsive design that works on all devices
 - **Interactive**: Smooth page transitions, animated counters, and hover effects
@@ -12,11 +13,23 @@ A modern, responsive website for DevPy showcasing premium technology solutions a
 - **SEO Optimized**: Meta tags, structured data, and semantic HTML
 - **Contact Form**: Integrated with Supabase for message submission
 
-## 🚀 Tech Stack
+### Blog System Features:
+- **� Professional Backend**: Node.js + Express API with file storage
+- **📝 Admin Panel**: Complete blog management interface
+- **🖼️ Image Upload**: Support for featured images with automatic processing
+- **👥 Multi-User**: All users see published blogs (not just admin)
+- **💾 Real Persistence**: Blogs stored as JSON files on server
+- **🌐 Production Ready**: Fully deployable to Vercel/other platforms
+- **📱 Mobile Friendly**: Responsive design for all devices
+- **🔍 Search & Filter**: Built-in search and category filtering
+
+## �🚀 Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Backend**: Next.js API routes
-- **Database**: Supabase (PostgreSQL)
+- **Backend**: Node.js, Express.js
+- **Blog Storage**: File-based JSON storage
+- **Image Handling**: Multer for file uploads
+- **Database**: Supabase (PostgreSQL) for contact forms
 - **Animations**: AOS (Animate On Scroll) library
 - **Icons**: Font Awesome 6
 - **Fonts**: Google Fonts (Outfit)
@@ -24,30 +37,31 @@ A modern, responsive website for DevPy showcasing premium technology solutions a
 
 ## 📝 Setup Instructions
 
-### 1. Install Dependencies
+### 1. Install Node.js
+Download and install Node.js from [nodejs.org](https://nodejs.org/) (LTS version recommended)
+
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Configure Supabase
-1. Create a new project in [Supabase](https://supabase.com)
-2. Copy your project URL and anon key from the Supabase dashboard
-3. Copy `.env.example` to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
-4. Update `.env` with your Supabase credentials:
-   ```
-   SUPABASE_URL=https://your-project-id.supabase.co
-   SUPABASE_ANON_KEY=your-anon-key-here
-   ```
+### 3. Quick Start Blog System
+**Option A: Easy Start (Windows)**
+```bash
+# Double-click the start-blog.bat file
+```
 
-### 3. Set Up Database Table
-1. Go to your Supabase project dashboard
-2. Navigate to the SQL Editor
-3. Run the SQL script from `supabase-setup.sql` to create the messages table
+**Option B: Manual Start**
+```bash
+npm start
+```
 
-### 4. Run the Application
+### 4. Access the Blog System
+- **Main Blog**: http://localhost:3000/blogs
+- **Admin Panel**: http://localhost:3000/blogs/admin
+- **Admin Credentials**:
+  - Username: `DEVPY TEAM`
+  - Password: `puh17109`
 ```bash
 # Development
 npm run dev

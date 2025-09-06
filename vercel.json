@@ -2,26 +2,34 @@
   "version": 2,
   "builds": [
     {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/blogs/(.*)",
-      "destination": "/public/blogs/$1"
+      "src": "/api/(.*)",
+      "dest": "/server.js"
     },
     {
-      "source": "/blog",
-      "destination": "/public/blogs/"
+      "src": "/blogs/(.*)",
+      "dest": "/public/blogs/$1"
     },
     {
-      "source": "/",
-      "destination": "/public/index.html"
+      "src": "/blog",
+      "dest": "/public/blogs/"
     },
     {
-      "source": "/(.*)",
-      "destination": "/public/$1"
+      "src": "/",
+      "dest": "/public/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
     }
   ],
   "headers": [

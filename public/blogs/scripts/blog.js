@@ -755,30 +755,41 @@ async function loadBlogPosts() {
     if (paginationContainer) paginationContainer.style.display = 'none';
     
     try {
-        // Load posts from the consistent storage key
-        const savedPosts = localStorage.getItem('devpy_blog_posts');
+        // Load posts from API
         let allPosts = [];
         
-        console.log('Checking localStorage for saved posts...');
+        console.log('Fetching posts from API...');
         
-        if (savedPosts) {
-            try {
-                const adminPosts = JSON.parse(savedPosts);
-                console.log('Raw admin posts from localStorage:', adminPosts);
-                
-                // Filter only published admin posts
-                const publishedAdminPosts = adminPosts.filter(post => post.status === 'published');
-                console.log('Published admin posts:', publishedAdminPosts);
-                
-                allPosts = publishedAdminPosts;
-            } catch (error) {
-                console.error('Error parsing admin posts:', error);
+        try {
+            const response = await fetch('/api/posts');
+            const data = await response.json();
+            
+            if (data.success && data.posts) {
+                allPosts = data.posts;
+                console.log('Loaded posts from API:', allPosts.length);
+            } else {
+                console.warn('API response success but no posts:', data);
                 allPosts = [];
+            }
+        } catch (apiError) {
+            console.error('API Error, falling back to localStorage:', apiError);
+            
+            // Fallback to localStorage for backward compatibility
+            const savedPosts = localStorage.getItem('devpy_blog_posts');
+            if (savedPosts) {
+                try {
+                    const adminPosts = JSON.parse(savedPosts);
+                    const publishedAdminPosts = adminPosts.filter(post => post.status === 'published');
+                    allPosts = publishedAdminPosts;
+                    console.log('Fallback: Using localStorage posts:', allPosts.length);
+                } catch (error) {
+                    console.error('Error parsing fallback posts:', error);
+                    allPosts = [];
+                }
             }
         }
         
-        // Only use admin posts - no sample/default posts
-        console.log('Using only admin posts:', allPosts.length);
+        console.log('Total posts available:', allPosts.length);
         
         // Apply filters
         let filteredPosts = allPosts;

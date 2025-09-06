@@ -6,7 +6,8 @@ class BlogAdmin {
         this.currentEditingPost = null;
         this.postsPerPage = 10;
         this.currentPage = 1;
-        this.storageKey = 'devpy_blog_posts'; // Consistent with blog.js
+        this.apiBaseUrl = '/api'; // API base URL
+        this.authToken = null;
         
         this.checkAuthentication();
     }
@@ -14,59 +15,62 @@ class BlogAdmin {
     getImageSrc(imagePath) {
         if (!imagePath) return './images/posts/placeholder.jpg';
         
-        // Check if it's a localStorage stored image
-        if (imagePath.startsWith('./images/post-images/')) {
-            const fileName = imagePath.replace('./images/post-images/', '');
-            const imageKey = `blog_image_${fileName}`;
-            const storedImage = localStorage.getItem(imageKey);
-            
-            if (storedImage) {
-                return storedImage; // Return the base64 data URL
-            }
+        // For server-uploaded images, return the path directly
+        if (imagePath.startsWith('./images/post-images/') || imagePath.startsWith('/images/post-images/')) {
+            return imagePath;
         }
         
         // Return the original path for regular images
         return imagePath;
     }
 
-    async processUploadedImage(imageFile) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    // Generate a unique filename
-                    const timestamp = Date.now();
-                    const extension = imageFile.name.split('.').pop() || 'jpg';
-                    const fileName = `post-${timestamp}.${extension}`;
-                    
-                    // Store image data in localStorage for demo purposes
-                    // In a real application, this would be uploaded to a server
-                    const imageData = e.target.result;
-                    
-                    // Store image in localStorage with a special key
-                    const imageKey = `blog_image_${fileName}`;
-                    localStorage.setItem(imageKey, imageData);
-                    
-                    resolve(fileName);
-                } catch (error) {
-                    reject(error);
-                }
+    // API helper methods
+    async apiCall(endpoint, options = {}) {
+        try {
+            const url = `${this.apiBaseUrl}${endpoint}`;
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                },
+                ...options
             };
-            reader.onerror = () => reject(new Error('Failed to read image file'));
-            reader.readAsDataURL(imageFile);
-        });
+
+            // Add auth token if available
+            if (this.authToken && !config.headers['Authorization']) {
+                config.headers['Authorization'] = `Bearer ${this.authToken}`;
+            }
+
+            const response = await fetch(url, config);
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || `HTTP error! status: ${response.status}`);
+            }
+
+            return data;
+        } catch (error) {
+            console.error(`API call failed: ${endpoint}`, error);
+            throw error;
+        }
+    }
+
+    async processUploadedImage(imageFile) {
+        // This method is no longer needed as we'll handle uploads via FormData
+        // in the main post submission method
+        return imageFile;
     }
 
     checkAuthentication() {
         const isLoggedIn = localStorage.getItem('admin_logged_in');
-        if (isLoggedIn === 'true') {
+        const authToken = localStorage.getItem('admin_token');
+        
+        if (isLoggedIn === 'true' && authToken) {
+            this.authToken = authToken;
             this.showAdminPanel();
         } else {
             this.showLoginModal();
         }
-        
-        // Clear any old sample data on initialization
-        this.clearOldSampleData();
     }
 
     clearOldSampleData() {
@@ -106,7 +110,7 @@ class BlogAdmin {
     showAdminPanel() {
         document.getElementById('loginModal').classList.remove('active');
         document.getElementById('adminContent').style.display = 'block';
-        this.posts = this.loadPosts();
+        this.loadPosts();
         this.init();
     }
 
@@ -117,30 +121,55 @@ class BlogAdmin {
         }
     }
 
-    handleLogin(e) {
+    async handleLogin(e) {
         e.preventDefault();
         
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
         
-        // Check credentials
-        if (username === 'DEVPY TEAM' && password === 'puh17109') {
-            localStorage.setItem('admin_logged_in', 'true');
-            localStorage.setItem('admin_username', username);
-            document.getElementById('adminUsername').textContent = username;
-            this.showAdminPanel();
-            this.hideLoginError();
-        } else {
-            this.showLoginError();
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await this.apiCall('/admin/login', {
+                method: 'POST',
+                body: JSON.stringify({ username, password })
+            });
+            
+            if (response.success) {
+                localStorage.setItem('admin_logged_in', 'true');
+                localStorage.setItem('admin_token', response.token);
+                localStorage.setItem('admin_username', response.username);
+                
+                this.authToken = response.token;
+                document.getElementById('adminUsername').textContent = response.username;
+                
+                this.showAdminPanel();
+                this.hideLoginError();
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            this.showLoginError(error.message || 'Login failed. Please try again.');
+        } finally {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
     }
 
-    showLoginError() {
+    showLoginError(message = 'Invalid credentials. Please try again.') {
         const errorDiv = document.getElementById('loginError');
+        const errorSpan = errorDiv.querySelector('span');
+        if (errorSpan) {
+            errorSpan.textContent = message;
+        }
         errorDiv.style.display = 'flex';
         setTimeout(() => {
             errorDiv.style.display = 'none';
-        }, 3000);
+        }, 5000);
     }
 
     hideLoginError() {
@@ -149,7 +178,9 @@ class BlogAdmin {
 
     logout() {
         localStorage.removeItem('admin_logged_in');
+        localStorage.removeItem('admin_token');
         localStorage.removeItem('admin_username');
+        this.authToken = null;
         this.showLoginModal();
     }
 
@@ -200,21 +231,26 @@ class BlogAdmin {
         });
     }
 
-    loadPosts() {
-        const savedPosts = localStorage.getItem(this.storageKey);
-        if (savedPosts) {
-            return JSON.parse(savedPosts);
+    async loadPosts() {
+        try {
+            const response = await this.apiCall('/admin/posts');
+            if (response.success) {
+                this.posts = response.posts;
+                this.loadDashboardStats();
+                this.renderPostsTable();
+            }
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            this.posts = [];
+            this.showNotification('Failed to load posts', 'error');
         }
-        
-        // Start with empty blog list
-        return [];
     }
 
-    savePosts() {
-        localStorage.setItem(this.storageKey, JSON.stringify(this.posts));
+    async savePosts() {
+        // This method is no longer needed as saving is handled by individual API calls
+        // Just refresh the posts and update UI
         this.loadDashboardStats();
         this.renderPostsTable();
-        // Trigger event for blog page to update
         this.notifyBlogUpdate();
     }
 
@@ -424,49 +460,75 @@ class BlogAdmin {
         event.preventDefault();
         
         const formData = new FormData(event.target);
-        const postData = {
-            title: formData.get('title'),
-            category: formData.get('category'),
-            author: {
-                name: formData.get('author')
-            },
-            excerpt: formData.get('excerpt'),
-            content: document.getElementById('postContent').innerHTML,
-            tags: formData.get('tags') ? formData.get('tags').split(',').map(tag => tag.trim()) : [],
-            status: formData.get('status'),
-            publishDate: new Date().toISOString(),
-            readTime: Math.ceil(document.getElementById('postContent').innerText.length / 200) || 1,
-            views: 0
-        };
-
-        // Handle image
-        const imageFile = formData.get('image');
-        if (imageFile && imageFile.size > 0) {
-            // Process the uploaded image
-            const imageFileName = await this.processUploadedImage(imageFile);
-            postData.featuredImage = `./images/post-images/${imageFileName}`;
-        } else if (this.currentEditingPost) {
-            postData.featuredImage = this.currentEditingPost.featuredImage;
-        } else {
-            postData.featuredImage = './images/posts/placeholder.jpg';
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Prepare form data for API
+            const apiFormData = new FormData();
+            apiFormData.append('title', formData.get('title'));
+            apiFormData.append('category', formData.get('category'));
+            apiFormData.append('author', formData.get('author'));
+            apiFormData.append('excerpt', formData.get('excerpt'));
+            apiFormData.append('content', document.getElementById('postContent').innerHTML);
+            apiFormData.append('tags', formData.get('tags') || '');
+            apiFormData.append('status', formData.get('status'));
+            
+            // Calculate read time
+            const contentLength = document.getElementById('postContent').innerText.length;
+            const readTime = Math.ceil(contentLength / 200) || 1;
+            apiFormData.append('readTime', `${readTime} min read`);
+            
+            // Handle image upload
+            const imageFile = formData.get('image');
+            if (imageFile && imageFile.size > 0) {
+                apiFormData.append('image', imageFile);
+            }
+            
+            let response;
+            if (this.currentEditingPost) {
+                // Update existing post
+                response = await fetch(`${this.apiBaseUrl}/admin/posts/${this.currentEditingPost.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${this.authToken}`
+                    },
+                    body: apiFormData
+                });
+            } else {
+                // Create new post
+                response = await fetch(`${this.apiBaseUrl}/admin/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${this.authToken}`
+                    },
+                    body: apiFormData
+                });
+            }
+            
+            const result = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(result.message || 'Failed to save post');
+            }
+            
+            if (result.success) {
+                this.showMessage(result.message || 'Post saved successfully!', 'success');
+                await this.loadPosts(); // Refresh posts
+                this.closePostModal();
+            }
+        } catch (error) {
+            console.error('Error saving post:', error);
+            this.showMessage(error.message || 'Failed to save post', 'error');
+        } finally {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         }
-
-        if (this.currentEditingPost) {
-            // Edit existing post
-            postData.id = this.currentEditingPost.id;
-            postData.views = this.currentEditingPost.views;
-            const index = this.posts.findIndex(post => post.id === this.currentEditingPost.id);
-            this.posts[index] = postData;
-            this.showMessage('Post updated successfully!', 'success');
-        } else {
-            // Add new post
-            postData.id = Date.now();
-            this.posts.unshift(postData);
-            this.showMessage('Post created successfully!', 'success');
-        }
-
-        this.savePosts();
-        this.closePostModal();
     }
 
     editPost(id) {
@@ -476,31 +538,48 @@ class BlogAdmin {
         }
     }
 
-    clearAllPosts() {
+    async clearAllPosts() {
         this.showConfirmModal(
             'Are you sure you want to delete ALL blog posts? This action cannot be undone.',
-            () => {
-                this.posts = [];
-                localStorage.removeItem(this.storageKey);
-                localStorage.removeItem('blog_last_update');
-                this.loadDashboardStats();
-                this.renderPostsTable();
-                this.notifyBlogUpdate();
-                this.showMessage('All posts cleared successfully!', 'success');
+            async () => {
+                try {
+                    const response = await this.apiCall('/admin/posts', {
+                        method: 'DELETE'
+                    });
+                    
+                    if (response.success) {
+                        this.posts = [];
+                        await this.loadPosts();
+                        this.showMessage('All posts cleared successfully!', 'success');
+                    }
+                } catch (error) {
+                    console.error('Error clearing posts:', error);
+                    this.showMessage('Failed to clear posts', 'error');
+                }
                 this.closeConfirmModal();
             }
         );
     }
 
-    deletePost(id) {
+    async deletePost(id) {
         const post = this.posts.find(post => post.id === id);
         if (post) {
             this.showConfirmModal(
                 `Are you sure you want to delete "${post.title}"?`,
-                () => {
-                    this.posts = this.posts.filter(p => p.id !== id);
-                    this.savePosts();
-                    this.showMessage('Post deleted successfully!', 'success');
+                async () => {
+                    try {
+                        const response = await this.apiCall(`/admin/posts/${id}`, {
+                            method: 'DELETE'
+                        });
+                        
+                        if (response.success) {
+                            await this.loadPosts();
+                            this.showMessage('Post deleted successfully!', 'success');
+                        }
+                    } catch (error) {
+                        console.error('Error deleting post:', error);
+                        this.showMessage('Failed to delete post', 'error');
+                    }
                     this.closeConfirmModal();
                 }
             );
@@ -567,6 +646,11 @@ class BlogAdmin {
         setTimeout(() => {
             message.remove();
         }, 5000);
+    }
+
+    showNotification(text, type = 'info') {
+        // Use the same method as showMessage for consistency
+        this.showMessage(text, type);
     }
 
     // Export posts data (for backup)
