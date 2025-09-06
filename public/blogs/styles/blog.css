@@ -614,8 +614,10 @@ body.mobile-menu-open::before {
 /* Sections */
 .intro-section {
     padding: var(--space-xxxl) 0;
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.9) 0%, rgba(63, 81, 181, 0.8) 100%);
-    color: white;
+    background: #0f1419;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
     position: relative;
 }
 
@@ -626,7 +628,7 @@ body.mobile-menu-open::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(63, 81, 181, 0.1) 100%);
+    background: rgba(255, 255, 255, 0.02);
     z-index: 1;
 }
 
@@ -676,13 +678,12 @@ body.mobile-menu-open::before {
     font-size: var(--font-3xl);
     font-weight: 700;
     margin-bottom: var(--space-md);
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
 }
 
 .intro-description {
     font-size: var(--font-lg);
-    color: rgba(255, 255, 255, 0.95);
+    color: #b5bac5;
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;

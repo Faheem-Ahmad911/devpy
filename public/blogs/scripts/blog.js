@@ -19,6 +19,7 @@ function initializeApp() {
     initializeHeroSlider();
     initializeSearch();
     initializeAdminUpdates();
+    initializeLatestPostButton();
     console.log('DevPy Blog: Application initialized successfully');
 }
 
@@ -669,6 +670,48 @@ function initializeBlogPosts() {
         nextBtn.addEventListener('click', () => {
             currentPage++;
             loadBlogPosts();
+        });
+    }
+}
+
+// Initialize Latest Post Button
+function initializeLatestPostButton() {
+    const readLatestBtn = document.getElementById('readLatestBtn');
+    if (readLatestBtn) {
+        readLatestBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            try {
+                // Get all posts from localStorage
+                const savedPosts = localStorage.getItem('devpy_blog_posts');
+                if (savedPosts) {
+                    const allPosts = JSON.parse(savedPosts);
+                    // Filter published posts and sort by date (newest first)
+                    const publishedPosts = allPosts
+                        .filter(post => post.status === 'published')
+                        .sort((a, b) => new Date(b.publishDate || b.date) - new Date(a.publishDate || a.date));
+                    
+                    if (publishedPosts.length > 0) {
+                        // Redirect to the latest post
+                        const latestPost = publishedPosts[0];
+                        window.location.href = `post.html?id=${latestPost.id}`;
+                        return;
+                    }
+                }
+                
+                // Fallback: scroll to blog posts section if no posts available
+                const blogSection = document.getElementById('blog-posts');
+                if (blogSection) {
+                    blogSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            } catch (error) {
+                console.error('Error getting latest post:', error);
+                // Fallback: scroll to blog posts section
+                const blogSection = document.getElementById('blog-posts');
+                if (blogSection) {
+                    blogSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         });
     }
 }
