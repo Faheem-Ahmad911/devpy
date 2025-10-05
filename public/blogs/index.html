@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="DevPy Blog - Insights, Guides & Stories about Web Development, Cloud Solutions, AI/ML, and Tech Innovations. Expert content for developers and businesses.">
     <meta name="keywords" content="DevPy blog, web development guides, cloud solutions, AI/ML tutorials, tech insights, programming tutorials, DevOps automation, database solutions">
-    <meta name="author" content="DevPy Team">
+
     <meta name="robots" content="index, follow">
 
     <!-- Title -->
-    <title>DevPy Blog - Insights, Guides & Stories from Tech Experts</title>
+    <title>DevPy Blog - Insights, Guides & Stories</title>
 
     <!-- Favicons -->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -76,6 +76,80 @@
         }
     }
     </script>
+    
+    <!-- Blog Index Mobile Navigation CSS -->
+    <style>
+        /* Mobile Navigation Override for Blog Index */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                z-index: 1001 !important;
+                background: transparent !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 8px !important;
+            }
+            
+            .mobile-menu-btn i {
+                font-size: 1.5rem !important;
+                color: var(--text-primary) !important;
+            }
+            
+            .nav-menu {
+                position: fixed !important;
+                top: 70px !important;
+                left: -100% !important;
+                width: 100% !important;
+                height: calc(100vh - 70px) !important;
+                background: var(--bg-primary) !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+                padding: 2rem 1rem !important;
+                transition: left 0.3s ease !important;
+                z-index: 1000 !important;
+                overflow-y: auto !important;
+                border: none !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .nav-menu.active {
+                left: 0 !important;
+            }
+            
+            .nav-menu li {
+                width: 100% !important;
+                max-width: 300px !important;
+                margin-bottom: 1rem !important;
+                list-style: none !important;
+            }
+            
+            .nav-menu .nav-link {
+                display: block !important;
+                width: 100% !important;
+                padding: 1rem !important;
+                text-align: center !important;
+                color: var(--text-primary) !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+                border-radius: 8px !important;
+                text-decoration: none !important;
+                font-size: 1.1rem !important;
+                font-weight: 500 !important;
+                border: 1px solid transparent !important;
+                transition: all 0.3s ease !important;
+            }
+            
+            .nav-menu .nav-link:hover,
+            .nav-menu .nav-link.active {
+                background: var(--primary) !important;
+                color: white !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3) !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -151,7 +225,7 @@
                             <img src="images/hero_section images/pexels-plann-2999237-4549414.jpg" alt="Digital Marketing" loading="lazy">
                         </div>
                         <div class="hero-image-slide">
-                            <img src="images/hero_section images/pexels-ron-lach-9783353.jpg" alt="AI Technology" loading="lazy">
+                            <img src="blogs_pics/blog1-data-science-2025.jpg" alt="AI Technology" loading="lazy">
                         </div>
                         <div class="hero-image-slide">
                             <img src="images/hero_section images/pexels-veeterzy-303383.jpg" alt="Cloud Computing" loading="lazy">
@@ -306,7 +380,145 @@
     <!-- Load AOS for animations if available -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     
+    <!-- Immediate loading screen fix -->
+    <script>
+        // Hide loading screen immediately
+        setTimeout(function() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'none';
+            }
+        }, 500);
+    </script>
+    
+    <!-- Main website navigation script -->
+    <script src="../script.js"></script>
+    
+    <!-- Blog Index Mobile Navigation -->
+    <script>
+        // Mobile Navigation for Blog Index Page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Blog index mobile navigation initialization');
+            
+            // Mobile menu elements
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.getElementById('navMenu');
+            const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+            
+            console.log('Blog index mobile elements:', {
+                button: !!mobileMenuBtn,
+                menu: !!navMenu,
+                icon: !!mobileMenuIcon
+            });
+            
+            if (mobileMenuBtn && navMenu) {
+                // Mobile menu toggle function
+                function toggleBlogMobileMenu(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('Blog index mobile menu clicked');
+                    
+                    const isOpen = navMenu.classList.contains('active');
+                    
+                    if (isOpen) {
+                        // Close menu
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fas fa-bars';
+                        }
+                        console.log('Blog menu closed');
+                    } else {
+                        // Open menu
+                        navMenu.classList.add('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                        if (mobileMenuIcon) {
+                            mobileMenuIcon.className = 'fas fa-times';
+                        }
+                        console.log('Blog menu opened');
+                    }
+                }
+                
+                // Add event listeners
+                mobileMenuBtn.addEventListener('click', toggleBlogMobileMenu);
+                mobileMenuBtn.addEventListener('touchstart', toggleBlogMobileMenu);
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                            if (mobileMenuIcon) {
+                                mobileMenuIcon.className = 'fas fa-bars';
+                            }
+                        }
+                    }
+                });
+                
+                console.log('Blog index mobile menu initialized successfully');
+            } else {
+                console.error('Blog index mobile menu elements not found');
+            }
+        });
+    </script>
+    
     <!-- Simple Blog System -->
     <script src="scripts/simple-blog.js"></script>
+    
+    <!-- Backup blog initialization -->
+    <script>
+        // Backup initialization in case the main script fails
+        setTimeout(function() {
+            const blogGrid = document.getElementById('blogPostsGrid');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            if (blogGrid && blogGrid.innerHTML.trim() === '') {
+                console.log('Backup blog initialization triggered');
+                
+                if (loadingSpinner) {
+                    loadingSpinner.style.display = 'none';
+                }
+                
+                // Create blog post HTML directly
+                const blogHTML = `
+                    <article class="blog-post-card" data-category="ai-ml">
+                        <div class="post-image">
+                            <img src="blogs_pics/blog1-data-science-2025.jpg" alt="Future of Data Science in 2025" loading="lazy">
+                            <div class="post-category">AI & Machine Learning</div>
+                        </div>
+                        <div class="post-content">
+                            <h3 class="post-title">
+                                <a href="blog1.html">Future of Data Science in 2025</a>
+                            </h3>
+                            <p class="post-excerpt">Explore the evolving landscape of data science, career opportunities, industry trends, and the roadmap for aspiring professionals in 2025.</p>
+                            <div class="post-meta">
+                                <div class="author-info">
+                                    <img src="images/authors/default.jpg" alt="DevPy Team" class="author-avatar">
+                                    <span class="author-name">DevPy Team</span>
+                                </div>
+                                <div class="post-date">October 5, 2025</div>
+                                <div class="read-time">12 min read</div>
+                            </div>
+                            <div class="post-tags">
+                                <span class="tag">Data Science</span>
+                                <span class="tag">Machine Learning</span>
+                                <span class="tag">AI</span>
+                            </div>
+                            <div class="post-actions">
+                                <a href="blog1.html" class="read-article-btn">
+                                    <i class="fas fa-book-open"></i>
+                                    Read Article
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                `;
+                
+                blogGrid.innerHTML = blogHTML;
+            }
+        }, 2000); // Wait 2 seconds
+    </script>
 </body>
 </html>

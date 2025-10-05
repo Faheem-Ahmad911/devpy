@@ -2173,6 +2173,46 @@ body.mobile-menu-open::before {
     color: white;
 }
 
+/* Post Actions */
+.blog-post-card .post-actions {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--glass-border);
+}
+
+.read-article-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-sm);
+    transition: all var(--transition-fast);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+.read-article-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    color: white;
+}
+
+.read-article-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+.read-article-btn i {
+    font-size: var(--font-sm);
+}
+
 /* Loading Spinner */
 .loading-spinner {
     display: flex;
