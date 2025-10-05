@@ -1,18 +1,16 @@
 {
-  "name": "devpy-blog",
+  "name": "devpy-website",
   "version": "1.0.0",
-  "description": "DevPy Blog with GitHub API integration",
-  "main": "server.js",
+  "description": "DevPy Professional Website - Static Site",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site deployed'"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/Faheem-Ahmad911/devpy.git"
   },
   "author": "DevPy Team",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["devpy", "website", "static", "portfolio"]
 }

@@ -1,35 +1,26 @@
 {
   "version": 2,
-  "builds": [
+  "public": true,
+  "rewrites": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "source": "/blogs/(.*)",
+      "destination": "/public/blogs/$1"
     },
     {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/blog",
+      "destination": "/public/blogs/index.html"
     },
     {
-      "src": "/blogs/(.*)",
-      "dest": "/public/blogs/$1"
+      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|html))",
+      "destination": "/public/$1"
     },
     {
-      "src": "/blog",
-      "dest": "/public/blogs/"
+      "source": "/",
+      "destination": "/public/index.html"
     },
     {
-      "src": "/",
-      "dest": "/public/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/(.*)",
+      "destination": "/public/$1"
     }
   ],
   "headers": [
