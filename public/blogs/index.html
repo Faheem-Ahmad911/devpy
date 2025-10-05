@@ -382,33 +382,13 @@
     
     <!-- Immediate loading screen fix -->
     <script>
-        // Debug script to identify issues
-        console.log('Blog index page loaded');
-        console.log('Current URL:', window.location.href);
-        
         // Hide loading screen immediately
         setTimeout(function() {
             const loading = document.getElementById('loading');
             if (loading) {
                 loading.style.display = 'none';
-                console.log('Loading screen hidden');
-            }
-            
-            // Check if blog grid exists
-            const blogGrid = document.getElementById('blogPostsGrid');
-            console.log('Blog grid found:', !!blogGrid);
-            if (blogGrid) {
-                console.log('Blog grid initial content:', blogGrid.innerHTML);
             }
         }, 500);
-        
-        // Monitor blog grid changes
-        setTimeout(function() {
-            const blogGrid = document.getElementById('blogPostsGrid');
-            if (blogGrid) {
-                console.log('Blog grid content after 2s:', blogGrid.innerHTML.length > 0 ? 'Has content' : 'Empty');
-            }
-        }, 2000);
     </script>
     
     <!-- Main website navigation script -->
@@ -494,10 +474,7 @@
             const blogGrid = document.getElementById('blogPostsGrid');
             const loadingSpinner = document.getElementById('loadingSpinner');
             
-            console.log('Backup script checking blog grid:', blogGrid);
-            console.log('Blog grid content:', blogGrid ? blogGrid.innerHTML.trim() : 'Grid not found');
-            
-            if (blogGrid && (blogGrid.innerHTML.trim() === '' || blogGrid.innerHTML.includes('Loading blog posts'))) {
+            if (blogGrid && blogGrid.innerHTML.trim() === '') {
                 console.log('Backup blog initialization triggered');
                 
                 if (loadingSpinner) {
@@ -506,53 +483,6 @@
                 
                 // Create blog post HTML directly
                 const blogHTML = `
-                    <article class="blog-post-card" data-category="ai-ml">
-                        <div class="post-image">
-                            <img src="blogs_pics/blog1-data-science-2025.jpg" alt="Future of Data Science in 2025" loading="lazy" onerror="this.src='images/posts/placeholder.jpg'">
-                            <div class="post-category">AI & Machine Learning</div>
-                        </div>
-                        <div class="post-content">
-                            <h3 class="post-title">
-                                <a href="blog1.html">Future of Data Science in 2025</a>
-                            </h3>
-                            <p class="post-excerpt">Explore the evolving landscape of data science, career opportunities, industry trends, and the roadmap for aspiring professionals in 2025.</p>
-                            <div class="post-meta">
-                                <div class="author-info">
-                                    <img src="images/authors/default.jpg" alt="DevPy Team" class="author-avatar" onerror="this.src='images/authors/default.jpg'">
-                                    <span class="author-name">DevPy Team</span>
-                                </div>
-                                <div class="post-date">October 5, 2025</div>
-                                <div class="read-time">12 min read</div>
-                            </div>
-                            <div class="post-tags">
-                                <span class="tag">Data Science</span>
-                                <span class="tag">Machine Learning</span>
-                                <span class="tag">AI</span>
-                            </div>
-                            <div class="post-actions">
-                                <a href="blog1.html" class="read-article-btn">
-                                    <i class="fas fa-book-open"></i>
-                                    Read Article
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                `;
-                
-                blogGrid.innerHTML = blogHTML;
-                console.log('Backup blog post injected successfully');
-            } else {
-                console.log('Backup not needed - blog grid already has content');
-            }
-        }, 1500); // Wait 1.5 seconds
-        
-        // Additional backup attempt
-        setTimeout(function() {
-            const blogGrid = document.getElementById('blogPostsGrid');
-            if (blogGrid && (blogGrid.innerHTML.trim() === '' || blogGrid.innerHTML.includes('Loading blog posts'))) {
-                console.log('Final backup attempt triggered');
-                // Force show the backup HTML
-                blogGrid.innerHTML = `
                     <article class="blog-post-card" data-category="ai-ml">
                         <div class="post-image">
                             <img src="blogs_pics/blog1-data-science-2025.jpg" alt="Future of Data Science in 2025" loading="lazy">
@@ -585,8 +515,10 @@
                         </div>
                     </article>
                 `;
+                
+                blogGrid.innerHTML = blogHTML;
             }
-        }, 3000); // Wait 3 seconds
+        }, 2000); // Wait 2 seconds
     </script>
 </body>
 </html>
